@@ -1,0 +1,159 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Contact wonderIT | Start Your Web, Mobile or Custom Software Project",
+
+  description:
+    "Get in touch with wonderIT to discuss web development, mobile apps, SaaS platforms, AI integrations, automation systems, and custom software solutions tailored to your business needs.",
+
+  keywords: [
+    "contact wonderIT",
+    "software development contact",
+    "web development company contact",
+    "mobile app development contact",
+    "custom software consultation",
+    "React development company",
+    "Next.js development agency",
+    "React Native developers",
+    "SaaS development services",
+    "AI software development",
+    "automation systems development",
+    "enterprise software solutions",
+    "startup software development",
+    "custom web applications",
+    "digital product consultation",
+  ],
+
+  metadataBase: new URL("https://wonderit.io"),
+
+  alternates: {
+    canonical: "/contact",
+  },
+
+  authors: [{ name: "wonderIT" }],
+  creator: "wonderIT",
+  publisher: "wonderIT",
+
+  openGraph: {
+    title:
+      "Contact wonderIT | Web, Mobile & AI-Enhanced Software Development",
+
+    description:
+      "Talk with wonderIT about building scalable web apps, mobile applications, SaaS products, automation tools, and AI-powered software solutions.",
+
+    url: "https://wonderit.io/contact",
+
+    siteName: "wonderIT",
+
+    images: [
+      {
+        url: "https://wonderit.io/images/wonderIT-logo.webp",
+        width: 1200,
+        height: 630,
+        alt: "Contact wonderIT",
+      },
+    ],
+
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Contact wonderIT | Custom Software & App Development Team",
+
+    description:
+      "Reach out to wonderIT for custom software development, mobile apps, SaaS platforms, automation systems, and AI integrations.",
+
+    images: ["https://wonderit.io/images/wonderIT-logo.webp"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function ContactPage() {
+  return (
+    <main className="subpage-padding">
+      {/* Contact Hero */}
+      <section className="py-24 bg-secondary/20">
+        <div className="container text-center">
+          <h1 className="text-5xl md:text-7xl mb-6">Let's <span className="gradient-text">Connect</span></h1>
+          <p className="text-xl text-text-secondary max-w-2xl mx-auto" style={{margin: '0 auto'}}>
+            Ready to start your next project? Get in touch with us and let's build something amazing.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-24">
+        <div className="container">
+          <div className="grid md:grid-2 gap-x-16 gap-y-24" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
+            <div className="animate-fade-in-up mb-6">
+              <h2 className="text-4xl mb-6">Contact <span className="gradient-text">Information</span></h2>
+              <p className="text-text-secondary mb-10">
+                Whether you have a question about features, pricing, or anything else, our team is ready to answer all your questions.
+              </p>
+              
+              <div className="space-y-8">
+                <div className="flex gap-6 items-center">
+                  <div className="w-12 h-12 flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium">Phone</h4>
+                    <p className="text-text-secondary">+1 (555) 000-0000</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 items-center">
+                  <div className="w-12 h-12 flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium">Email</h4>
+                    <p className="text-text-secondary">hello@wonderit.com</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 items-center">
+                  <div className="w-12 h-12 flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium">Office</h4>
+                    <p className="text-text-secondary">123 Innovation Way, Tech City</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+           
+              <form className="grid gap-6">
+                <div className="grid gap-2">
+                  <label className="text-sm font-medium ml-1">Full Name</label>
+                  <input type="text" placeholder="John Doe" />
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-medium ml-1">Email Address</label>
+                  <input type="email" placeholder="john@example.com" />
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-medium ml-1">Subject</label>
+                  <input type="text" placeholder="How can we help?" />
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm font-medium ml-1">Message</label>
+                  <textarea rows={4} placeholder="Your message..." className="resize-none"></textarea>
+                </div>
+                <button type="submit" className="btn btn-primary py-4 text-lg">Send Message</button>
+              </form>
+            
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
