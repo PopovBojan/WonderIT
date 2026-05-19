@@ -35,7 +35,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </Link>
 
         {/* Post Header */}
-        <header className="mb-16 animate-fade-in-up max-w-4xl">
+        <header className="mb-16 max-w-4xl">
           <div className="flex gap-4 mb-6">
             
           </div>
@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Featured Image */}
         {post.featuredImage && (
-          <div className="relative w-full h-[400px] md:h-[600px] mb-16 rounded-3xl overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <div className="relative w-full h-[400px] md:h-[600px] mb-16 rounded-3xl overflow-hidden">
             <Image
               src={post.featuredImage.node.sourceUrl}
               alt={post.featuredImage.node.altText || post.title}
@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
 
         {/* Content */}
-        <div className="max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="max-w-3xl mx-auto">
           <div 
             className="prose prose-lg prose-invert max-w-none blog-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
 
         {/* Footer CTA */}
-        <footer className="mt-24 py-16 border-t border-black/5 text-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+        <footer className="mt-24 py-16 border-t border-black/5 text-center">
           <h3 className="text-3xl mb-6">Have a project in mind?</h3>
           <p className="text-text-secondary mb-10 text-lg">Let's build something amazing together.</p>
           <Link href="/contact" className="btn btn-primary">

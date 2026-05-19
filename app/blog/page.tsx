@@ -14,7 +14,7 @@ export default async function BlogPage() {
     <main className="subpage-padding min-h-screen">
       <div className="container">
         {/* Header Section */}
-        <div className="mb-16 animate-fade-in-up">
+        <div className="mb-16">
           <h1 className="text-5xl md:text-7xl mb-6">
             Insights & <span className="gradient-text">Innovations</span>
           </h1>
@@ -25,7 +25,7 @@ export default async function BlogPage() {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid grid-3 items-stretch animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="grid grid-3 items-stretch">
           {posts && posts.map((post: any) => (
             <article key={post.id} className="glass rounded-2xl overflow-hidden group flex flex-col h-550 transition-all hover:-translate-y-2 hover:shadow-2xl">
               <Link href={`/blog/${post.slug}`}>

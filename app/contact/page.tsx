@@ -93,7 +93,7 @@ export default function ContactPage() {
       <section className="py-24">
         <div className="container">
           <div className="grid md:grid-2 gap-x-16 gap-y-24" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
-            <div className="animate-fade-in-up mb-6">
+            <div className="mb-6">
               <h2 className="text-4xl mb-6">Contact <span className="gradient-text">Information</span></h2>
               <p className="text-text-secondary mb-10">
                 Whether you have a question about features, pricing, or anything else, our team is ready to answer all your questions.

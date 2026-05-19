@@ -10,7 +10,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 bg-secondary/10">
         </div>
         
-        <div className="container relative z-10 animate-fade-in-up">
+        <div className="container relative z-10">
           <div className="grid-hero">
             <div>
              <h1 className="text-5xl md:text-7xl mb-6">
