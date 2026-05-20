@@ -52,7 +52,7 @@ export default function TestimonialSlider() {
   const uniqueId = "testimonial-gradient-" + index;
 
   return (
-    <section className="py-24 overflow-visible relative testimonials-section">
+    <section className="py-12 overflow-visible relative testimonials-section">
       <div className="container">
         <h2 className="text-4xl mb-12 text-center" style={{ textAlign: 'center', marginBottom: '60px' }}>
           Client Testimonials for Our <span className="gradient-text">Development Services</span>

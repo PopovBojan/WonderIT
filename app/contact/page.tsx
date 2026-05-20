@@ -80,25 +80,25 @@ export default function ContactPage() {
   return (
     <main className="subpage-padding">
       {/* Contact Hero */}
-      <section className="py-24 bg-secondary/20">
+      <section className="py-12 bg-secondary/20">
         <div className="container text-center">
           <h1 className="text-5xl md:text-7xl mb-6">Let's <span className="gradient-text">Connect</span></h1>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto" style={{margin: '0 auto'}}>
+          <p className="text-m text-text-secondary max-w-2xl mx-auto" style={{ margin: '0 auto' }}>
             Ready to start your next project? Get in touch with us and let's build something amazing.
           </p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24">
+      <section>
         <div className="container">
-          <div className="grid md:grid-2 gap-x-16 gap-y-24" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
+          <div className="grid md:grid-2 gap-x-16 gap-y-24" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
             <div className="mb-6">
               <h2 className="text-4xl mb-6">Contact <span className="gradient-text">Information</span></h2>
               <p className="text-text-secondary mb-10">
                 Whether you have a question about features, pricing, or anything else, our team is ready to answer all your questions.
               </p>
-              
+
               <div className="space-y-8">
                 <div className="flex gap-6 items-center">
                   <div className="w-12 h-12 flex items-center justify-center">
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Phone</h4>
-                    <p className="text-text-secondary">+1 (555) 000-0000</p>
+                    <p className="text-text-secondary">+389 (077)631-316</p>
                   </div>
                 </div>
                 <div className="flex gap-6 items-center">
@@ -115,7 +115,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Email</h4>
-                    <p className="text-text-secondary">hello@wonderit.com</p>
+                    <p className="text-text-secondary">contact@wonderit.io</p>
                   </div>
                 </div>
                 <div className="flex gap-6 items-center">
@@ -124,33 +124,33 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Office</h4>
-                    <p className="text-text-secondary">123 Innovation Way, Tech City</p>
+                    <p className="text-text-secondary">Venjamin Mecukovski 1, Skopje, North Macedonia</p>
                   </div>
                 </div>
               </div>
             </div>
-            
-           
-              <form className="grid gap-6">
-                <div className="grid gap-2">
-                  <label className="text-sm font-medium ml-1">Full Name</label>
-                  <input type="text" placeholder="John Doe" />
-                </div>
-                <div className="grid gap-2">
-                  <label className="text-sm font-medium ml-1">Email Address</label>
-                  <input type="email" placeholder="john@example.com" />
-                </div>
-                <div className="grid gap-2">
-                  <label className="text-sm font-medium ml-1">Subject</label>
-                  <input type="text" placeholder="How can we help?" />
-                </div>
-                <div className="grid gap-2">
-                  <label className="text-sm font-medium ml-1">Message</label>
-                  <textarea rows={4} placeholder="Your message..." className="resize-none"></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary py-4 text-lg">Send Message</button>
-              </form>
-            
+
+
+            <form className="grid gap-6">
+              <div className="grid gap-2">
+                <label className="text-sm font-medium ml-1">Full Name</label>
+                <input type="text" placeholder="John Doe" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium ml-1">Email Address</label>
+                <input type="email" placeholder="john@example.com" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium ml-1">Subject</label>
+                <input type="text" placeholder="How can we help?" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm font-medium ml-1">Message</label>
+                <textarea rows={4} placeholder="Your message..." className="resize-none"></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary py-4 text-lg">Send Message</button>
+            </form>
+
           </div>
         </div>
       </section>

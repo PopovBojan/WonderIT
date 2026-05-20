@@ -239,8 +239,8 @@ export default function WorkPage() {
                   project.category === "google-web"
                     ? "Google Workspace Add-on"
                     : project.category === "mobile-apps"
-                    ? "Mobile Application"
-                    : "Web Application",
+                      ? "Mobile Application"
+                      : "Web Application",
                 operatingSystem:
                   project.category === "mobile-apps"
                     ? "iOS, Android"
@@ -267,15 +267,15 @@ export default function WorkPage() {
       {/* Work Hero */}
       <section className="py-12 bg-secondary/20">
         <div className="container text-center">
-          <h1 className="text-5xl md:text-7xl">Our <span className="gradient-text">Work</span></h1>
+          <h1 className="text-5xl md:text-7xl mb-6">Our <span className="gradient-text">Work</span></h1>
           <p className="text-m text-text-secondary max-w-2xl mx-auto" style={{ margin: '0 auto' }}>
-           Explore our custom software, mobile app, SaaS, and AI-enhanced development projects built with React, Next.js, React Native, Node.js, and cloud technologies.
+            Explore our custom software, mobile app, SaaS, and AI-enhanced development projects built with React, Next.js, React Native, Node.js, and cloud technologies.
           </p>
         </div>
       </section>
 
       {/* Portfolio Carousel */}
-      <section className="py-24">
+      <section >
         <div className="container">
           <ProjectCarousel projects={projects} />
         </div>
