@@ -98,3 +98,27 @@ export async function getPostBySlug(slug: string) {
 
   return data?.post;
 }
+
+export async function getProjects() {
+  const data = await fetchAPI(
+    `
+    query GetProjects {
+      projects(first: 100) {
+        nodes {
+          title
+          projectFields {
+            externalLink
+            projectImageUrl
+            techStack
+            projectCategory
+            projectDescription
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.projects?.nodes || [];
+}
+

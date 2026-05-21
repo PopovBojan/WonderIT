@@ -102,7 +102,7 @@ export default function TestimonialSlider() {
           </div>
           
           {/* Progress Indicators */}
-          <div className="testimonial-dots" style={{ position: 'absolute', bottom: '-50px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '12px', zIndex: 10 }}>
+          <div className="testimonial-dots" style={{ position: 'absolute', bottom: '-50px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
             {testimonials.map((_, i) => (
               <button
                 key={i}
@@ -111,18 +111,28 @@ export default function TestimonialSlider() {
                   goToIndex(i);
                 }}
                 style={{ 
-                  width: index === i ? '32px' : '10px', 
-                  height: '10px', 
-                  borderRadius: '10px', 
+                  width: '44px', 
+                  height: '44px', 
                   border: 'none', 
                   cursor: 'pointer',
-                  backgroundColor: index === i ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                  opacity: index === i ? 1 : 0.3,
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  background: 'transparent',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   padding: 0
                 }}
                 aria-label={`Go to testimonial ${i + 1}`}
-              />
+              >
+                <span style={{
+                  width: index === i ? '32px' : '10px', 
+                  height: '10px', 
+                  borderRadius: '10px', 
+                  backgroundColor: index === i ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                  opacity: index === i ? 1 : 0.3,
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  display: 'block'
+                }} />
+              </button>
             ))}
           </div>
         </div>

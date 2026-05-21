@@ -21,7 +21,6 @@ export default function Home() {
               </p>
               <div className="flex gap-4">
                 <Link href="/work" className="btn btn-primary">View Our Work</Link>
-                <Link href="/about" className="btn glass px-8 py-3 rounded-full">Learn More</Link>
               </div>
             </div>
             <div className="relative h-[400px] md:h-[500px]">

@@ -3,7 +3,14 @@ import Link from "next/link";
 import SidebarLinks from "./components/SidebarLinks";
 import HeaderLogo from "./components/HeaderLogo";
 import MobileNav from "./components/MobileNav";
+import Head from "next/head";
 import "./globals.css";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap"
+});
 
 
 export const metadata: Metadata = {
@@ -93,8 +100,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+        <html lang="en" className={inter.className}>
      
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <style>{`/* Inline critical CSS */\n/* Insert contents of 06_r287sbqzt5.css here */`}</style>
+      </Head>
       <body className="antialiased">
         <script
           type="application/ld+json"
@@ -164,6 +176,7 @@ export default function RootLayout({
                   href="https://www.facebook.com/wonderit.io#" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="Follow wonderIT on Facebook"
                   className="flex items-center justify-center rounded-full glass hover:bg-accent-primary hover:text-white transition-all"
                   style={{ width: '40px', height: '40px', color: 'var(--accent-primary)' }}
                 >
@@ -175,6 +188,7 @@ export default function RootLayout({
                   href="https://www.linkedin.com/company/wonderit-io/posts/?feedView=all" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="Follow wonderIT on LinkedIn"
                   className="flex items-center justify-center rounded-full glass hover:bg-accent-primary hover:text-white transition-all"
                   style={{ width: '40px', height: '40px', color: 'var(--accent-primary)' }}
                 >
@@ -186,6 +200,7 @@ export default function RootLayout({
                   href="https://instagram.com/wonderit_io" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="Follow wonderIT on Instagram"
                   className="flex items-center justify-center rounded-full glass hover:bg-accent-primary hover:text-white transition-all"
                   style={{ width: '40px', height: '40px', color: 'var(--accent-primary)' }}
                 >
