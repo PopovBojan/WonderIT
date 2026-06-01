@@ -1219,7 +1219,7 @@ h3 {
    Mobile nav drawer
 ───────────────────────────────────────── */
 .mobile-nav {
-  display: none;
+  display: none !important;
   position: fixed;
   top: 0;
   right: 0;
@@ -1235,6 +1235,7 @@ h3 {
   transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .mobile-nav.is-open {
+  display: block !important;
   transform: translateX(0);
 }
 
