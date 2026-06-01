@@ -2,6 +2,8 @@ import ProjectCarousel from './ProjectCarousel';
 import type { Metadata } from "next";
 import { getProjects } from '@/lib/wp-graphql';
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title:
     "Our Work | Web Apps, Mobile Apps & SaaS Projects | wonderIT",
@@ -71,8 +73,12 @@ interface Project {
 }
 
 export default async function WorkPage() {
-  const wpProjects = await getProjects();
-  console.log("Fetched WordPress Projects:", JSON.stringify(wpProjects, null, 2));
+  let wpProjects: any[] = [];
+  try {
+    wpProjects = await getProjects();
+  } catch {
+    wpProjects = [];
+  }
 
   const mappedWpProjects: Project[] = (wpProjects || []).map((node: any) => ({
     name: node.title || "",

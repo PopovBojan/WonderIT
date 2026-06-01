@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "@/lib/wp-graphql";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Blog | WonderIT - Software Engineering, AI & Digital Product Insights",
 
@@ -65,7 +67,12 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getAllPosts();
+  let posts: any[] = [];
+  try {
+    posts = (await getAllPosts()) || [];
+  } catch {
+    posts = [];
+  }
 
   return (
     <main className="subpage-padding min-h-screen">

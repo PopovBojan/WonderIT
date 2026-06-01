@@ -3,9 +3,16 @@ import Image from "next/image";
 import { getPostBySlug } from "@/lib/wp-graphql";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  let post: any = null;
+  try {
+    post = await getPostBySlug(slug);
+  } catch {
+    post = null;
+  }
   if (!post) return { title: "Post Not Found" };
 
   return {
@@ -16,7 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  let post: any = null;
+  try {
+    post = await getPostBySlug(slug);
+  } catch {
+    post = null;
+  }
 
   if (!post) {
     notFound();
