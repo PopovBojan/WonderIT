@@ -1,6 +1,6 @@
 export default function PrivacyPolicyPage() {
   return (
-    <main className="container py-12 bg-secondary/20" style={{height:'100vh'}}>
+    <main className="container py-12 bg-secondary/20" >
       <h1 className="text-5xl">Privacy Policy</h1>
 
       <p className="text-m text-text-secondary max-w-2xl mb-6">Last updated: June 2026</p>
