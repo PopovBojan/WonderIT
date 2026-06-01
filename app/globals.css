@@ -394,6 +394,10 @@ a {
   height: 400px;
 }
 
+.h-\[600px\] {
+  height: 600px;
+}
+
 .bg-secondary\/30 {
   background-color: rgba(255, 255, 255, 0.3);
 }

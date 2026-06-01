@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Head from "next/head";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import HeaderLogo from "./components/HeaderLogo";
+import NavLinks from "./components/NavLinks";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -151,15 +152,7 @@ export default function RootLayout({
         <header className="site-header">
           <div className="header-inner">
             <HeaderLogo />
-            <nav className="nav" aria-label="Primary navigation">
-              <Link href="/#services">Services</Link>
-              <Link href="/#industries">Industries</Link>
-              <Link href="/work">Work</Link>
-              <Link href="/about">About</Link>
-              <Link className="contact-link" href="/contact">
-                Contact
-              </Link>
-            </nav>
+            <NavLinks />
           </div>
         </header>
 
@@ -168,11 +161,15 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="footer-inner">
             <p>© {new Date().getFullYear()} WonderIT. All rights reserved.</p>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+<Link href="/terms-of-service">Terms of Service</Link>
+<Link href="/cookie-policy">Cookie Policy</Link>
             <div className="socials" aria-label="Social links">
               <a
                 href="https://www.facebook.com/wonderit.io#"
                 aria-label="WonderIT on Facebook"
                 rel="noopener noreferrer"
+                target="blank"
               >
                 f
               </a>
@@ -180,6 +177,7 @@ export default function RootLayout({
                 href="https://www.linkedin.com/company/wonderit-io/posts/?feedView=all"
                 aria-label="WonderIT on LinkedIn"
                 rel="noopener noreferrer"
+                 target="blank"
               >
                 in
               </a>
@@ -187,6 +185,7 @@ export default function RootLayout({
                 href="https://instagram.com/wonderit_io"
                 aria-label="WonderIT on Instagram"
                 rel="noopener noreferrer"
+                 target="blank"
               >
                 ig
               </a>

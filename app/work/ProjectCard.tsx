@@ -60,6 +60,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-view-project"
+              
             >
               View Project
             </a>

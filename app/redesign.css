@@ -763,7 +763,7 @@ h3 {
   width: 100%;
   height: 100%;
   min-height: 230px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .project-card.featured {
@@ -1153,6 +1153,160 @@ h3 {
   max-width: 720px;
 }
 
+/* ─────────────────────────────────────────
+   Burger toggle button
+───────────────────────────────────────── */
+.burger-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 1001;
+  position: relative;
+}
+
+.burger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease,
+              width 0.3s ease;
+}
+
+/* Animate bars into an × when open */
+.burger-toggle.is-open .burger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger-toggle.is-open .burger-bar:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.burger-toggle.is-open .burger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─────────────────────────────────────────
+   Backdrop
+───────────────────────────────────────── */
+.mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(21, 21, 32, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mobile-backdrop.is-visible {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────
+   Mobile nav drawer
+───────────────────────────────────────── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100dvh;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 48px rgba(21, 21, 32, 0.14);
+  z-index: 1000;
+  overflow-y: auto;
+  will-change: transform;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.is-open {
+  transform: translateX(0);
+}
+
+.mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 28px 40px;
+  min-height: 100%;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Staggered entrance for each link */
+.mobile-nav-list li {
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity 0.28s ease calc(var(--i, 0) * 55ms + 60ms),
+    transform 0.28s ease calc(var(--i, 0) * 55ms + 60ms);
+}
+.mobile-nav.is-open .mobile-nav-list li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(142, 77, 232, 0.07);
+  color: var(--ink);
+}
+
+.mobile-nav-link.is-active {
+  color: var(--ink);
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(21, 21, 32, 0.08);
+}
+
+.mobile-contact-link {
+  margin-top: 16px;
+  background: var(--ink);
+  color: #ffffff !important;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(21, 21, 32, 0.22);
+}
+
+.mobile-contact-link:hover {
+  background: #2a2a38 !important;
+  color: #ffffff !important;
+}
+
+
 @media (max-width: 900px) {
   .header-inner {
     width: min(100% - 28px, 720px);
@@ -1161,9 +1315,26 @@ h3 {
     flex-wrap: wrap;
   }
 
+  /* Hide desktop nav; show burger */
   .nav {
-    width: 100%;
-    justify-content: space-between;
+    display: none;
+  }
+
+  .burger-toggle {
+    display: flex;
+  }
+
+  .mobile-backdrop {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Keep header-inner from wrapping — logo left, burger right */
+  .header-inner {
+    flex-wrap: nowrap;
   }
 
   .hero,
@@ -1533,21 +1704,6 @@ h3 {
 }
 
 @media (max-width: 360px) {
-  .nav {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 4px 9px;
-  }
-
-  .nav a {
-    padding-inline: 5px;
-    font-size: 0.76rem;
-  }
-
-  .nav .contact-link {
-    padding-inline: 11px;
-  }
-
   .actions {
     grid-template-columns: 1fr;
   }

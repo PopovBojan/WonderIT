@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="subpage-padding">
+    <main className="subpage-padding" style={{ height: "100vh" }}>
       {/* Contact Hero */}
       <section className="py-12 bg-secondary/20">
         <div className="container text-center">

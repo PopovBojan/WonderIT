@@ -128,13 +128,13 @@ export default function AboutPage() {
                 We believe strong software is built through collaboration, transparency, and continuous improvement. Every project we take on is approached with long-term thinking, technical precision, and a focus on delivering real business value.
               </p>
             </div>
-            <div className="relative h-[400px] rounded-2xl overflow-hidden glass">
+            <div className="relative h-[600px] rounded-2xl overflow-hidden ">
               <Image
-                src="/section1.png"
+                src="/our-team-wonderit.avif"
                 alt="Our Mission"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
@@ -298,31 +298,73 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid-3">
-            {[
-              { name: "Kristijan Petrovski", title: "CEO / Full Stack Developer", image: "/Kristijan.jpeg" },
-              { name: "Andrea Zakovski", title: "Full Stack Developer", image: "/Andrea.png" },
-              { name: "Bojan Popov", title: "Full Stack Developer", image: "/Bojan.jpeg" },
-              { name: "Darko Stojanovski", title: "Full Stack Developer", image: "/Darko.jpeg" },
-              { name: "Mario Boskovski", title: "Full Stack Developer", image: "/Mario.jpeg" },
-            ].map((member, index) => (
-              <div key={index} className="glass team-card p-4 rounded-2xl">
-                <div className="team-image-wrapper">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="team-info">
-                  <h3 className="team-name gradient-text">{member.name}</h3>
-                  <p className="team-title">{member.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+           <div className="team-grid">
+          <article className="team-card">
+            <div className="team-photo">
+              <img
+                src="/Kristijan.jpeg"
+                alt="Kristijan Petrovski, CEO and full stack developer at WonderIT"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3>Kristijan Petrovski</h3>
+              <p>CEO / Full Stack Developer</p>
+            </div>
+          </article>
+          <article className="team-card">
+            <div className="team-photo">
+              <img
+                src="/Andrea.png"
+                alt="Andrea Zakovski, full stack developer at WonderIT"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3>Andrea Zakovski</h3>
+              <p>Full Stack Developer</p>
+            </div>
+          </article>
+          <article className="team-card">
+            <div className="team-photo">
+              <img
+                src="/Bojan.jpeg"
+                alt="Bojan Popov, full stack developer at WonderIT"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3>Bojan Popov</h3>
+              <p>Full Stack Developer</p>
+            </div>
+          </article>
+          <article className="team-card">
+            <div className="team-photo">
+              <img
+                src="/Darko.jpeg"
+                alt="Darko Stojanovski, full stack developer at WonderIT"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3>Darko Stojanovski</h3>
+              <p>Full Stack Developer</p>
+            </div>
+          </article>
+          <article className="team-card">
+            <div className="team-photo">
+              <img
+                src="/Mario.jpeg"
+                alt="Mario Boskovski, full stack developer at WonderIT"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3>Mario Boskovski</h3>
+              <p>Full Stack Developer</p>
+            </div>
+          </article>
+        </div>
         </div>
       </section>
     </main>

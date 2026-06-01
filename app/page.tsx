@@ -238,13 +238,13 @@ export default function Home() {
           <div>
             <p className="section-label">Our Work</p>
             <h2 id="work-title">
-              Projects built for players, coaches, operators, and product teams.
+              Projects built for <span className="gradient-text">players, coaches, operators, and product teams.</span>
             </h2>
           </div>
           <p className="lede-black">
             A sample from the WonderIT portfolio: mobile apps, SaaS platforms,
             Google Workspace automation, encrypted communication, and travel
-            products.
+            products. <a href="/work" className="project-link">View full portfolio</a>
           </p>
         </div>
 
@@ -272,6 +272,7 @@ export default function Home() {
                 className="project-link"
                 href="https://www.next11.com/"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -301,6 +302,7 @@ export default function Home() {
                 className="project-link"
                 href="https://better-coaching.dk/"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -329,6 +331,7 @@ export default function Home() {
                 className="project-link"
                 href="https://itunes.apple.com/mk/app/daily-feed-app/id1401337497"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -357,6 +360,7 @@ export default function Home() {
                 className="project-link"
                 href="https://chrome.google.com/webstore/detail/appstoremetrix/eonflbgifkcopaagegpajbafilncjief?hl=en"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -383,6 +387,7 @@ export default function Home() {
                 className="project-link"
                 href="https://caseengine.com/"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -404,6 +409,7 @@ export default function Home() {
                 className="project-link"
                 href="http://anywhr.de"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -431,6 +437,7 @@ export default function Home() {
                 className="project-link"
                 href="https://loni.ai/"
                 rel="noopener"
+                 target="blank"
               >
                 View Project
               </a>
@@ -665,7 +672,7 @@ export default function Home() {
 
       <section id="contact" className="cta" aria-labelledby="cta-title">
         <h2 id="cta-title">
-          Bring the idea, the spreadsheet, the workflow, or the mess. WonderIT
+          Bring the idea, the spreadsheet, the workflow, or the mess. <span className="gradient-text">WonderIT </span>
           can turn it into software.
         </h2>
         <a className="button" href="/contact">
