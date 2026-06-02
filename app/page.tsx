@@ -2,7 +2,7 @@ import { url } from "inspector";
 
 export default function Home() {
   return (
-    <main>
+    <main className="home-page">
       <section className="section hero" aria-labelledby="hero-title">
         <div>
           <p className="eyebrow">Web, mobile, AI</p>

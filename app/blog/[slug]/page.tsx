@@ -35,7 +35,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <main className="subpage-padding min-h-screen">
+    <main className="blog-page blog-post-page subpage-padding min-h-screen">
       <div className="container">
         {/* Navigation */}
         <Link href="/blog" className="inline-flex items-center gap-2 font-bold uppercase tracking-wider text-accent-primary mb-12 hover:translate-x-[-5px] transition-transform" style={{ fontSize: '12px' }}>
@@ -55,13 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.title}
           </h1>
           
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="text-text-secondary mb-6 text-sm">
-                {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-              </p>
-            </div>
-          </div>
+         
         </header>
 
         {/* Featured Image */}
@@ -80,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Content */}
         <div className="max-w-3xl mx-auto">
           <div 
-            className="prose prose-lg prose-invert max-w-none blog-content"
+            className="prose prose-lg max-w-none blog-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

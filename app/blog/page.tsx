@@ -75,7 +75,7 @@ export default async function BlogPage() {
   }
 
   return (
-    <main className="subpage-padding min-h-screen">
+    <main className="blog-page subpage-padding min-h-screen">
       <div className="container py-12">
         {/* Header Section */}
         <div className="mb-16">
@@ -97,7 +97,7 @@ export default async function BlogPage() {
         {/* Blog Grid */}
         <div className="grid grid-3 items-stretch py-12">
           {posts && posts.map((post: any) => (
-            <article key={post.id} className="glass rounded-2xl overflow-hidden group flex flex-col h-550 transition-all hover:-translate-y-2 hover:shadow-2xl">
+            <article key={post.id} className="glass rounded-2xl overflow-hidden flex flex-col h-550">
              
                 <div className="relative h-150 w-full overflow-hidden shrink-0">
                   {post.featuredImage ? (
@@ -122,22 +122,20 @@ export default async function BlogPage() {
                 </div>
 
                 <div className="h-300 p-8 pb-4 overflow-hidden">
-                  <div className="text-xs text-text-secondary mb-3" style={{ fontSize: '14px' }}>
-                    {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </div>
-                  <h2 className="text-2xl mb-4 line-clamp-2">
+                  
+                  <h2 className="text-2xl mb-4 line-clamp-3">
                     {post.title}
                   </h2>
                   <div
-                    className="text-text-secondary text-m line-clamp-3"
+                    className="text-text-secondary text-m line-clamp-7"
                     dangerouslySetInnerHTML={{ __html: post.excerpt }}
                   />
                 </div>
              
 
               <div className="h-100 p-8 pt-0 flex items-center">
-                <Link href={`/blog/${post.slug}`}>
-                  <span className="btn-read-more">Read Article</span>
+                <Link href={`/blog/${post.slug}`} className="button primary">
+                  Read Article
                 </Link>
               </div>
             </article>

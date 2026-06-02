@@ -160,10 +160,14 @@ export default function RootLayout({
 
         <footer className="site-footer">
           <div className="footer-inner">
-            <p>© {new Date().getFullYear()} WonderIT. All rights reserved.</p>
-            <Link href="/privacy-policy">Privacy Policy</Link>
-<Link href="/terms-of-service">Terms of Service</Link>
-<Link href="/cookie-policy">Cookie Policy</Link>
+            <p className="footer-copyright">
+              © {new Date().getFullYear()} WonderIT. All rights reserved.
+            </p>
+            <nav className="footer-links" aria-label="Legal">
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/terms-of-service">Terms of Service</Link>
+              <Link href="/cookie-policy">Cookie Policy</Link>
+            </nav>
             <div className="socials" aria-label="Social links">
               <a
                 href="https://www.facebook.com/wonderit.io#"
@@ -177,7 +181,7 @@ export default function RootLayout({
                 href="https://www.linkedin.com/company/wonderit-io/posts/?feedView=all"
                 aria-label="WonderIT on LinkedIn"
                 rel="noopener noreferrer"
-                 target="blank"
+                target="blank"
               >
                 in
               </a>
@@ -185,7 +189,7 @@ export default function RootLayout({
                 href="https://instagram.com/wonderit_io"
                 aria-label="WonderIT on Instagram"
                 rel="noopener noreferrer"
-                 target="blank"
+                target="blank"
               >
                 ig
               </a>

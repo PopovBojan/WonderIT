@@ -92,7 +92,7 @@ export default async function WorkPage() {
   }));
 
   return (
-    <main className="subpage-padding">
+    <main className="work-page subpage-padding">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

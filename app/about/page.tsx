@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="subpage-padding">
+    <main className="about-page subpage-padding">
       <script
         id="about-page-schema"
         type="application/ld+json"
