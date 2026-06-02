@@ -102,10 +102,10 @@ export default function AboutPage() {
         }}
       />
       {/* About Hero */}
-      <section className="py-12 bg-secondary/20">
-        <div className="container text-center">
+      <section className="py-12">
+        <div className="container">
           <h1 className="text-5xl md:text-7xl mb-6">About <span className="gradient-text">WonderIT</span></h1>
-          <p className="text-m text-text-secondary max-w-2xl mx-auto" style={{ margin: '0 auto' }}>
+          <p className="text-m text-text-secondary mx-auto" style={{ margin: '0 auto' }}>
             WonderIT is a full-stack software development team building scalable web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced digital products. We partner with startups, businesses, and enterprises worldwide to create reliable software focused on performance, usability, and long-term growth.
           </p>
         </div>
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 We believe strong software is built through collaboration, transparency, and continuous improvement. Every project we take on is approached with long-term thinking, technical precision, and a focus on delivering real business value.
               </p>
             </div>
-            <div className="relative h-[600px] rounded-2xl overflow-hidden ">
+            <div className="about-feature-image relative rounded-2xl overflow-hidden">
               <Image
                 src="/our-team-wonderit.avif"
                 alt="Our Mission"
@@ -159,7 +159,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="py-12 bg-secondary/10">
+      <section className="py-12 ">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl mb-6">

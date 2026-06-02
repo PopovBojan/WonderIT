@@ -17,7 +17,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     >
       {/* Image */}
       <div
-        className="relative overflow-hidden bg-black/10"
+        className="relative overflow-hidden "
         style={{ height: '250px', minHeight: '250px', maxHeight: '250px', width: '100%' }}
       >
         <img

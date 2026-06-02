@@ -140,10 +140,10 @@ export default async function WorkPage() {
         }}
       />
       {/* Work Hero */}
-      <section className="py-12 bg-secondary/20">
-        <div className="container text-center">
+      <section className="py-12 ">
+        <div className="container">
           <h1 className="text-5xl md:text-7xl mb-6">Our <span className="gradient-text">Work</span></h1>
-          <p className="text-m text-text-secondary max-w-2xl mx-auto" style={{ margin: '0 auto' }}>
+          <p className="text-m text-text-secondary mx-auto" style={{ margin: '0 auto' }}>
             Explore our custom software, mobile app, SaaS, and AI-enhanced development projects built with React, Next.js, React Native, Node.js, and cloud technologies.
           </p>
         </div>

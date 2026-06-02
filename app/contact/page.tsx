@@ -77,13 +77,13 @@ export default function ContactPage() {
   return (
     <main className="subpage-padding" >
       {/* Contact Hero */}
-      <section className="py-12 bg-secondary/20">
-        <div className="container text-center">
+      <section className="py-12 ">
+        <div className="container ">
           <h1 className="text-5xl md:text-7xl mb-6">
             Let's <span className="gradient-text">Connect</span>
           </h1>
           <p
-            className="text-m text-text-secondary max-w-2xl mx-auto"
+            className="text-m text-text-secondary  mx-auto"
             style={{ margin: "0 auto" }}
           >
             Ready to start your next project? Get in touch with us and let's
@@ -110,9 +110,9 @@ export default function ContactPage() {
                 else, our team is ready to answer all your questions.
               </p>
 
-              <div className="space-y-8">
+             
                 <div className="flex gap-6 items-center">
-                  <div className="w-12 h-12 flex items-center justify-center">
+                  <div className="flex items-center justify-center">
                     <svg
                       width="20"
                       height="20"
@@ -125,12 +125,12 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium">Phone</h4>
-                    <p className="text-text-secondary">+389 (77)631-316</p>
+                    <h4 className="text-m">Phone</h4>
+                    <p className="text-text-secondary">+389 (77) 631-316</p>
                   </div>
                 </div>
                 <div className="flex gap-6 items-center">
-                  <div className="w-12 h-12 flex items-center justify-center">
+                  <div className=" flex items-center justify-center">
                     <svg
                       width="20"
                       height="20"
@@ -144,12 +144,12 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium">Email</h4>
+                    <h4 className="text-m">Email</h4>
                     <p className="text-text-secondary">hello@wonderit.io</p>
                   </div>
                 </div>
                 <div className="flex gap-6 items-center">
-                  <div className="w-12 h-12 flex items-center justify-center">
+                  <div className=" flex items-center justify-center">
                     <svg
                       width="20"
                       height="20"
@@ -163,13 +163,13 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium">Office</h4>
+                    <h4 className="text-m">Office</h4>
                     <p className="text-text-secondary">
                       Veniamin Machukovski 1, Skopje, North Macedonia
                     </p>
                   </div>
                 </div>
-              </div>
+             
             </div>
 
             <form className="grid gap-6">
