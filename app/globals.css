@@ -2148,6 +2148,13 @@ background: var(--bg-primary);
 background: var(--bg-primary);
 }
 
+.blog-page .button.primary {
+min-height: 42px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  box-shadow: 0 13px 24px rgba(21, 21, 32, 0.2);
+}
+
 .blog-post-page .blog-content :is(section, div, article) {
 background: transparent !important;
   background-image: none !important;
