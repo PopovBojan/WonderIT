@@ -3,7 +3,7 @@
 interface Project {
   name: string;
   link: string;
-  image: string;
+  image: string | null;
   stack: string;
   category: string;
   content: string;
@@ -17,14 +17,16 @@ export default function ProjectCard({ project }: { project: Project }) {
     >
       {/* Image */}
       <div
-        className="relative overflow-hidden "
+        className="relative overflow-hidden bg-black/10"
         style={{ height: '250px', minHeight: '250px', maxHeight: '250px', width: '100%' }}
       >
-        <img
-          src={project.image}
-          alt={project.name}
-          className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
-        />
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.name}
+            className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
+          />
+        ) : null}
       </div>
 
       {/* Content — fixed 350px, button always at bottom */}
@@ -36,7 +38,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.category.replace('-', ' ')}
         </span>
 
-        <h3 className="text-l mb-1 font-semibold text-white">{project.name}</h3>
+        <h3 className="text-l mb-1 font-semibold">{project.name}</h3>
         <p className="text-s text-text-secondary/70 mb-3 font-mono">{project.stack}</p>
 
         <p

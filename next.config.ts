@@ -9,7 +9,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'test-wp-site-wordpress.server.wonderit.io',
+        hostname: 'wonderit-wp-wordpress.server.wonderit.io',
+      },
+      {
+        protocol: 'http',
+        hostname: 'wonderit-wp-wordpress.server.wonderit.io',
       },
     ],
   },

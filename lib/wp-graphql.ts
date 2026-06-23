@@ -1,4 +1,4 @@
-const API_URL = "https://test-wp-site-wordpress.server.wonderit.io/graphql";
+const API_URL = "https://wonderit-wp-wordpress.server.wonderit.io/graphql";
 
 async function fetchAPI(query: string, { variables }: { variables?: any } = {}) {
   const headers = { "Content-Type": "application/json" };

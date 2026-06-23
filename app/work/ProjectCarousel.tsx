@@ -6,7 +6,7 @@ import ProjectCard from './ProjectCard';
 interface Project {
   name: string;
   link: string;
-  image: string;
+  image: string | null;
   stack: string;
   category: string;
   content: string;

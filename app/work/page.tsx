@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 interface Project {
   name: string;
   link: string;
-  image: string;
+  image: string | null;
   stack: string;
   category: string;
   content: string;
@@ -83,7 +83,7 @@ export default async function WorkPage() {
   const mappedWpProjects: Project[] = (wpProjects || []).map((node: any) => ({
     name: node.title || "",
     link: node.projectFields?.externalLink || "Not Public",
-    image: node.projectFields?.projectImageUrl || "",
+    image: node.projectFields?.projectImageUrl || null,
     stack: node.projectFields?.techStack || "",
     category: (Array.isArray(node.projectFields?.projectCategory)
       ? node.projectFields.projectCategory[0]
@@ -125,7 +125,7 @@ export default async function WorkPage() {
                   project.link !== "Not Public"
                     ? project.link
                     : undefined,
-                image: project.image,
+                image: project.image || undefined,
                 creator: {
                   "@type": "Organization",
                   name: "wonderIT",

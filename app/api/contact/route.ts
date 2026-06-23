@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const WP_API_URL = "https://test-wp-site-wordpress.server.wonderit.io/wp-json/wonderit/v1/send-email";
+const WP_API_URL = "https://wonderit-wp-wordpress.server.wonderit.io/wp-json/wonderit/v1/send-email";
 
 export async function POST(request: Request) {
   try {
