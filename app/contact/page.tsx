@@ -174,22 +174,24 @@ export default function ContactPage() {
 
             <form className="grid gap-6">
               <div className="grid gap-2">
-                <label className="text-sm font-medium ml-1">Full Name</label>
-                <input type="text" placeholder="John Doe" />
+                <label htmlFor="name" className="text-sm font-medium ml-1">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="John Doe" />
               </div>
               <div className="grid gap-2">
-                <label className="text-sm font-medium ml-1">
+                <label htmlFor="email" className="text-sm font-medium ml-1">
                   Email Address
                 </label>
-                <input type="email" placeholder="john@example.com" />
+                <input id="email" name="email" type="email" placeholder="john@example.com" />
               </div>
               <div className="grid gap-2">
-                <label className="text-sm font-medium ml-1">Subject</label>
-                <input type="text" placeholder="How can we help?" />
+                <label htmlFor="subject" className="text-sm font-medium ml-1">Subject</label>
+                <input id="subject" name="subject" type="text" placeholder="How can we help?" />
               </div>
               <div className="grid gap-2">
-                <label className="text-sm font-medium ml-1">Message</label>
+                <label htmlFor="message" className="text-sm font-medium ml-1">Message</label>
                 <textarea
+                  id="message"
+                  name="message"
                   rows={4}
                   placeholder="Your message..."
                   className="resize-none"

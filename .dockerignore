@@ -1,0 +1,14 @@
+node_modules
+.git
+.gitignore
+.next
+*.md
+.cursor
+.vscode
+.idea
+.env
+.env.local
+.env.*.local
+Dockerfile
+.dockerignore
+deploy.tar.gz
