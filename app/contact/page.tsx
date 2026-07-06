@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact wonderIT | Start Your Web, Mobile or Custom Software Project",
@@ -172,35 +173,7 @@ export default function ContactPage() {
              
             </div>
 
-            <form className="grid gap-6">
-              <div className="grid gap-2">
-                <label htmlFor="name" className="text-sm font-medium ml-1">Full Name</label>
-                <input id="name" name="name" type="text" placeholder="John Doe" />
-              </div>
-              <div className="grid gap-2">
-                <label htmlFor="email" className="text-sm font-medium ml-1">
-                  Email Address
-                </label>
-                <input id="email" name="email" type="email" placeholder="john@example.com" />
-              </div>
-              <div className="grid gap-2">
-                <label htmlFor="subject" className="text-sm font-medium ml-1">Subject</label>
-                <input id="subject" name="subject" type="text" placeholder="How can we help?" />
-              </div>
-              <div className="grid gap-2">
-                <label htmlFor="message" className="text-sm font-medium ml-1">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  placeholder="Your message..."
-                  className="resize-none"
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary py-4 text-lg">
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
