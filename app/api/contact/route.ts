@@ -3,6 +3,13 @@ import { NextResponse } from "next/server";
 const WP_API_URL =
   "https://wonderit-wp-wordpress.server.wonderit.io/wp-json/wonderit/v1/send-email";
 
+export const dynamic = "force-dynamic";
+
+function getContactApiKey() {
+  // Bracket access avoids Next.js inlining this as undefined at Docker build time.
+  return process.env["WONDERIT_CONTACT_API_KEY"]?.trim();
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -15,13 +22,17 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.WONDERIT_CONTACT_API_KEY;
+    const apiKey = getContactApiKey();
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
 
     if (apiKey) {
       headers["X-WonderIT-API-Key"] = apiKey;
+    } else {
+      console.error(
+        "WONDERIT_CONTACT_API_KEY is not set in the server environment."
+      );
     }
 
     const wpResponse = await fetch(WP_API_URL, {
@@ -39,6 +50,18 @@ export async function POST(request: Request) {
 
     if (!wpResponse.ok) {
       console.error("WordPress API Error:", wpData);
+
+      if (wpResponse.status === 401) {
+        return NextResponse.json(
+          {
+            error: !apiKey
+              ? "Contact form is not configured on the server. Set WONDERIT_CONTACT_API_KEY in CapRover and redeploy."
+              : "Contact form API key was rejected by WordPress. Ensure the CapRover value matches WONDERIT_CONTACT_API_KEY in your WordPress code.",
+          },
+          { status: 401 }
+        );
+      }
+
       return NextResponse.json(
         {
           error:

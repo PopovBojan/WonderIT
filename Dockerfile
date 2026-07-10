@@ -3,6 +3,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+ARG WONDERIT_CONTACT_API_KEY
+ENV WONDERIT_CONTACT_API_KEY=$WONDERIT_CONTACT_API_KEY
 RUN npm run build
 
 FROM node:22-alpine AS runner
