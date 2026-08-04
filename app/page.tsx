@@ -419,7 +419,7 @@ export default function Home() {
           <article className="project-card">
             <div className="project-media">
               <img
-                src="https://media.licdn.com/dms/image/v2/C4E0BAQGxbj3lpnvZ-A/company-logo_200_200/company-logo_200_200/0/1636117165479/loni_ai_logo?e=1781740800&v=beta&t=PcLX4i4l5gwRyj_9tm5SBYnoODcBPwRoAWLmi2fVFUM"
+                src="https://loni.ai/wp-content/uploads/2021/08/Loni-logo_white-and-cyan_RGB-400-1-300x111.png"
                 alt="AppStoreMetrix Google Spreadsheet reporting add-on"
                 loading="lazy"
               />
