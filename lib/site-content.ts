@@ -94,7 +94,8 @@ export const STATIC_PROJECTS: Project[] = [
   {
     name: "Next11",
     link: "https://www.next11.com/",
-    image: "/services-wonderit.png",
+    image:
+      "https://cdn.prod.website-files.com/609a6a87708057326383b774/65a643e5c56b48d35b9382c7_Tiles.webp",
     stack: "React Native, Node.js, Firebase, LLM",
     category: "mobile-apps",
     content:
@@ -104,7 +105,8 @@ export const STATIC_PROJECTS: Project[] = [
   {
     name: "BetterCoaching",
     link: "https://better-coaching.dk/",
-    image: "/about-wonderIT.png",
+    image:
+      "https://better-coaching.dk/wp-content/uploads/2025/09/bc_camp_app_player1.png",
     stack: "React, React Native, Node.js, MongoDB, LLM",
     category: "mobile-apps",
     content:
@@ -113,19 +115,32 @@ export const STATIC_PROJECTS: Project[] = [
   {
     name: "Mobile Daily News Feed App",
     link: "https://itunes.apple.com/mk/app/daily-feed-app/id1401337497",
-    image: "/hero-illustration.png",
+    image:
+      "https://drive.google.com/thumbnail?authuser=0&sz=w463&id=19NA2F_seYiNuin5Iu74v-DpJTbRLHdGF",
     stack: "React Native, Node.js, JavaScript, Flexbox",
     category: "mobile-apps",
-    content: "iOS news feed aggregator delivering daily news through API services.",
+    content:
+      "iOS news feed aggregator delivering daily news through API services.",
   },
   {
     name: "AppStoreMetrix Addon",
     link: "https://chrome.google.com/webstore/detail/appstoremetrix/eonflbgifkcopaagegpajbafilncjief?hl=en",
-    image: "/services-wonderit.avif",
+    image:
+      "https://drive.google.com/thumbnail?authuser=0&sz=w463&id=1na2Pj8dHqSUIaK8TlDC2fEZ6iVzFtRxq",
     stack: "JavaScript, Google Apps Script, Firebase",
     category: "google-web",
     content:
       "Google Spreadsheet add-on for pulling reports from app stores, analyzing data, and visualizing trends.",
+  },
+  {
+    name: "Case Engine",
+    link: "https://caseengine.com/",
+    image:
+      "https://caseengine.com/wp-content/uploads/2025/04/caseengine-larger.png",
+    stack: "Wordpress, N8N",
+    category: "web-apps",
+    content:
+      "Case Engine builds the AI authority, Search Visibility, and Local Presence that puts your firm at the top of AI Search, Google, and Maps, so high-value cases come to you first.",
   },
   {
     name: "Message Application With PGP Encryption",
@@ -144,12 +159,33 @@ export const STATIC_PROJECTS: Project[] = [
     category: "web-apps",
     content: "Web application for travel discovery and flight booking.",
   },
+  {
+    name: "Loni.ai",
+    link: "https://loni.ai/",
+    image:
+      "https://loni.ai/wp-content/uploads/2021/08/Loni-logo_white-and-cyan_RGB-400-1-300x111.png",
+    stack: "ReactJs, ReactNative, NodeJs",
+    category: "web-apps",
+    content:
+      "Real-time vendor agnostic network management tool for your existing network, security, & cloud infrastructure with the power of true ZeroCode Automation.",
+  },
+  {
+    name: "Fleet Management Tracking Company",
+    link: "Not Public",
+    image:
+      "https://drive.google.com/thumbnail?authuser=0&sz=w463&id=19l0_U4v94G_DziyxInJ_zO-pXLqDOe57",
+    stack: "ReactJs, NodeJs, ExpressJs, JavaScript, Docker, CSS Grid",
+    category: "web-apps",
+    content:
+      "Application for vehicle tracking in real time and displaying it's information while can provide statistical data for it's track movement.",
+  },
 ];
 
 export const BUILD_ITEMS = [
   {
     title: "SaaS Platforms",
-    description: "Subscription products, dashboards, cloud apps, and multi-user systems.",
+    description:
+      "Subscription products, dashboards, cloud apps, and multi-user systems.",
   },
   {
     title: "Mobile Applications",
@@ -157,11 +193,13 @@ export const BUILD_ITEMS = [
   },
   {
     title: "Real-Time Systems",
-    description: "Live dashboards, tracking systems, WebSocket apps, and analytics.",
+    description:
+      "Live dashboards, tracking systems, WebSocket apps, and analytics.",
   },
   {
     title: "AI & Automation",
-    description: "LLM workflows, Google Workspace tools, reporting, and business automation.",
+    description:
+      "LLM workflows, Google Workspace tools, reporting, and business automation.",
   },
 ];
 
@@ -176,7 +214,8 @@ export const VALUES = [
   },
   {
     title: "Modern Technologies",
-    description: "Modern frameworks, cloud platforms, real-time systems, and AI workflows.",
+    description:
+      "Modern frameworks, cloud platforms, real-time systems, and AI workflows.",
   },
   {
     title: "Reliable Delivery",
@@ -190,6 +229,12 @@ export const TEAM = [
     title: "CEO / Full Stack Developer",
     image: "/Kristijan.jpeg",
     alt: "Kristijan Petrovski, CEO and full stack developer at WonderIT",
+  },
+  {
+    name: "Dragan Trajkovski",
+    title: "VP Sales",
+    image: "/Dragan.png",
+    alt: "Dragan Trajkovski, VP Sales at WonderIT",
   },
   {
     name: "Andrea Zakovski",
@@ -214,6 +259,24 @@ export const TEAM = [
     title: "Full Stack Developer",
     image: "/Mario.jpeg",
     alt: "Mario Boskovski, full stack developer at WonderIT",
+  },
+  {
+    name: "Ognen Petrovski",
+    title: "Lead Designer",
+    image: "/Ognen.jpeg",
+    alt: "Ognen, Lead Designer at WonderIT",
+  },
+  {
+    name: "Angel Velkovski",
+    title: "Senior QA Engineer",
+    image: "/Angel.jpeg",
+    alt: "Angel Velkovski, Senior QA Engineer at WonderIT",
+  },
+  {
+    name: "Dime Nacevski",
+    title: "Digital Growth Strategist",
+    image: "/Dime.jpeg",
+    alt: "Dime, Digital Growth Strategist at WonderIT",
   },
 ];
 

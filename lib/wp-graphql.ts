@@ -122,3 +122,24 @@ export async function getProjects() {
   return data?.projects?.nodes || [];
 }
 
+export async function getTestimonialLogos() {
+  const data = await fetchAPI(
+    `
+    query GetTestimonialLogos {
+      testimonialLogos(first: 100) {
+        nodes {
+          title
+          slug
+          databaseId
+          testimonialLogos {
+            image
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.testimonialLogos?.nodes || [];
+}
+

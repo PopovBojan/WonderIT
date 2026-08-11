@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { TEAM } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title:
@@ -299,71 +300,21 @@ export default function AboutPage() {
           </div>
 
            <div className="team-grid">
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Kristijan.jpeg"
-                alt="Kristijan Petrovski, CEO and full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Kristijan Petrovski</h3>
-              <p>CEO / Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Andrea.png"
-                alt="Andrea Zakovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Andrea Zakovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Bojan.jpeg"
-                alt="Bojan Popov, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Bojan Popov</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Darko.jpeg"
-                alt="Darko Stojanovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Darko Stojanovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Mario.jpeg"
-                alt="Mario Boskovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Mario Boskovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
+          {TEAM.map((member) => (
+            <article key={member.name} className="team-card">
+              <div className="team-photo">
+                <img
+                  src={member.image}
+                  alt={member.alt}
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <h3>{member.name}</h3>
+                <p>{member.title}</p>
+              </div>
+            </article>
+          ))}
         </div>
         </div>
       </section>

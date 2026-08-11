@@ -1,6 +1,22 @@
-import { url } from "inspector";
+import { CALENDLY_URL } from "../lib/calendly";
+import {
+  COMPANY_LOGOS,
+  testimonialLogosToCompanyLogos,
+} from "../lib/company-logos";
+import { TEAM } from "../lib/site-content";
+import { getTestimonialLogos } from "../lib/wp-graphql";
+import LogoMarqueeClient from "./components/LogoMarqueeClient";
 
-export default function Home() {
+export default async function Home() {
+  let logos = COMPANY_LOGOS;
+  try {
+    const nodes = await getTestimonialLogos();
+    const fromWp = testimonialLogosToCompanyLogos(nodes || []);
+    if (fromWp.length) logos = fromWp;
+  } catch {
+    // Keep static fallback logos when WP is unavailable.
+  }
+
   return (
     <main className="home-page">
       <section className="section hero" aria-labelledby="hero-title">
@@ -19,8 +35,13 @@ export default function Home() {
             <a className="button primary" href="/work">
               See the approach
             </a>
-            <a className="button secondary" href="/contact">
-              Start a project
+            <a
+              className="button secondary"
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a call
             </a>
           </div>
         </div>
@@ -77,6 +98,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <LogoMarqueeClient logos={logos} />
 
       <section className="section proof-strip" aria-label="WonderIT strengths">
         <div className="proof">
@@ -602,71 +625,21 @@ export default function Home() {
           </p>
         </div>
         <div className="team-grid">
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Kristijan.jpeg"
-                alt="Kristijan Petrovski, CEO and full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Kristijan Petrovski</h3>
-              <p>CEO / Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Andrea.png"
-                alt="Andrea Zakovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Andrea Zakovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Bojan.jpeg"
-                alt="Bojan Popov, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Bojan Popov</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Darko.jpeg"
-                alt="Darko Stojanovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Darko Stojanovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
-          <article className="team-card">
-            <div className="team-photo">
-              <img
-                src="/Mario.jpeg"
-                alt="Mario Boskovski, full stack developer at WonderIT"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <h3>Mario Boskovski</h3>
-              <p>Full Stack Developer</p>
-            </div>
-          </article>
+          {TEAM.map((member) => (
+            <article key={member.name} className="team-card">
+              <div className="team-photo">
+                <img
+                  src={member.image}
+                  alt={member.alt}
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <h3>{member.name}</h3>
+                <p>{member.title}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -675,9 +648,19 @@ export default function Home() {
           Bring the idea, the spreadsheet, the workflow, or the mess. <span className="gradient-text">WonderIT </span>
           can turn it into software.
         </h2>
-        <a className="button" href="/contact">
-          Contact WonderIT
-        </a>
+        <div className="actions">
+          <a
+            className="button"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a call
+          </a>
+          <a className="button secondary" href="/contact">
+            Contact WonderIT
+          </a>
+        </div>
       </section>
     </main>
   );
