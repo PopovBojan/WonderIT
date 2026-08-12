@@ -3,9 +3,10 @@ import {
   COMPANY_LOGOS,
   testimonialLogosToCompanyLogos,
 } from "../lib/company-logos";
-import { TEAM } from "../lib/site-content";
+import { TEAM, TESTIMONIALS } from "../lib/site-content";
 import { getTestimonialLogos } from "../lib/wp-graphql";
 import LogoMarqueeClient from "./components/LogoMarqueeClient";
+import TestimonialsSection from "./components/TestimonialsSection";
 
 export default async function Home() {
   let logos = COMPANY_LOGOS;
@@ -489,6 +490,33 @@ export default async function Home() {
             </div>
           </article>
         </div>
+      </section>
+
+      <section
+        id="testimonials"
+        className="section testimonials"
+        aria-labelledby="testimonials-title"
+      >
+        <div className="testimonials-head">
+          <p className="section-label">Client voices</p>
+          <h2 id="testimonials-title">
+            What teams say after we{" "}
+            <span className="gradient-text">ship.</span>
+          </h2>
+          <p className="lede-black">
+            Short notes from product and operations partners after the software
+            landed in real workflows.
+          </p>
+        </div>
+
+        <TestimonialsSection
+          items={TESTIMONIALS}
+          logos={logos.map((logo) => ({
+            id: logo.id,
+            name: logo.name,
+            logoUrl: logo.logoUrl,
+          }))}
+        />
       </section>
 
       <section

@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // Allow Cursor browser / local tooling on 127.0.0.1 during development.
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   output: 'standalone',
   images: {
     remotePatterns: [

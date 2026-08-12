@@ -223,6 +223,75 @@ export const VALUES = [
   },
 ];
 
+export type Testimonial = {
+  id: string;
+  quote: string;
+  /** Person or role label shown in the byline. */
+  name: string;
+  role: string;
+  /** Company name — matched to logo marquee brands when possible. */
+  company: string;
+  headline: string;
+  /** Whole-star rating from 1 to 5. */
+  rating: number;
+  /** Optional logo URL override; otherwise resolved from company logos. */
+  logoUrl?: string;
+};
+
+/** Homepage quotes — replace with approved client wording when ready. */
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "next11",
+    headline: "Shipped fast, stayed solid",
+    quote:
+      "WonderIT helped us ship a first useful product quickly, then kept hardening the parts our coaches and players open every day. Clear communication the whole way.",
+    name: "Product lead",
+    role: "Sports performance platform",
+    company: "Next11",
+    rating: 5,
+  },
+  {
+    id: "better-coaching",
+    headline: "Built for real operators",
+    quote:
+      "They treat architecture and UX as the same problem. The dashboard our coaches live in finally matches how the work actually happens.",
+    name: "Operations manager",
+    role: "Football club platform",
+    company: "BetterCoaching",
+    rating: 5,
+  },
+  {
+    id: "case-engine",
+    headline: "Automation without losing control",
+    quote:
+      "We stopped rebuilding the same reports by hand. The automation they put in place removed busywork without removing our control.",
+    name: "Founder",
+    role: "AI visibility product",
+    company: "Case Engine",
+    rating: 5,
+  },
+  {
+    id: "loni",
+    headline: "Reliable delivery end to end",
+    quote:
+      "From the first prototype to production release, the team stayed sharp on scope, quality, and timelines. We always knew what was shipping next.",
+    name: "CTO",
+    role: "Network management platform",
+    company: "Loni.ai",
+    rating: 5,
+  },
+  {
+    id: "anywhr",
+    headline: "Real-time systems done right",
+    quote:
+      "Our booking flows used to feel fragile under load. WonderIT rebuilt the product path so travelers get signal instead of noise.",
+    name: "Head of product",
+    role: "Travel discovery platform",
+    company: "Anywhr",
+    rating: 4,
+  },
+];
+
 export const TEAM = [
   {
     name: "Kristijan Petrovski",
