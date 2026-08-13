@@ -1,4 +1,4 @@
-export const CALENDLY_URL = "https://calendly.com/servicebriefai/30min";
+export const CALENDLY_URL = "https://calendly.com/servicebriefai/new-meeting";
 
 export const CALENDLY_EMBED_SRC =
   `${CALENDLY_URL}` +
