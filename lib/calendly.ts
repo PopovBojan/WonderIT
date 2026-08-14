@@ -8,4 +8,5 @@ export const CALENDLY_EMBED_SRC =
   "&hide_landing_page_details=1" +
   "&background_color=ffffff" +
   "&text_color=1d1d1f" +
-  "&primary_color=b933d6";
+  "&primary_color=b933d6" +
+  "&timezone=CET";
