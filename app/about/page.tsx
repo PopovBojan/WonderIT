@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import { TEAM } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title:
-    "About wonderIT | Full-Stack Web & Mobile Software Development Team",
+  title: "About WonderIT | Software Development Team",
 
   description:
-    "Learn about wonderIT — a full-stack software development team building web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced digital products for startups and businesses worldwide.",
+    "Meet the WonderIT team building scalable web platforms, mobile apps, SaaS products, real-time systems, and AI automation for global clients.",
 
   keywords: [
     "about wonderIT",
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "https://wonderit.io/images/wonderIT-logo.webp",
+        url: "https://wonderit.io/opengraph-image",
         width: 1200,
         height: 630,
         alt: "wonderIT Team",
@@ -83,8 +82,7 @@ export default function AboutPage() {
 
               url: "https://wonderit.io",
 
-              logo:
-                "https://wonderit.io/images/wonderIT-logo.webp",
+              logo: "https://wonderit.io/wonderit-logo.webp",
 
               knowsAbout: [
                 "React",

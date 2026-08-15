@@ -213,8 +213,8 @@ export default async function Home() {
           </h2>
           <p className="lede">
             Sports tech, SaaS, logistics, analytics, and AI automation all need
-            different product instincts. The redesign gives each domain room
-            without turning the homepage into a wall of text.
+            different product instincts. WonderIT brings domain-aware product
+            thinking to every system we design and build.
           </p>
         </div>
         <div className="industry-grid">
@@ -296,7 +296,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://www.next11.com/"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -326,7 +326,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://better-coaching.dk/"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -355,7 +355,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://itunes.apple.com/mk/app/daily-feed-app/id1401337497"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -384,7 +384,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://chrome.google.com/webstore/detail/appstoremetrix/eonflbgifkcopaagegpajbafilncjief?hl=en"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -394,7 +394,7 @@ export default async function Home() {
             <div className="project-media">
               <img
                 src="https://caseengine.com/wp-content/uploads/2025/04/caseengine-larger.png"
-                alt="Next11 football performance tracking app built with React Native"
+                alt="Case Engine AI search visibility platform"
                 loading="lazy"
               />
             </div>
@@ -411,7 +411,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://caseengine.com/"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -433,7 +433,7 @@ export default async function Home() {
                 className="project-link"
                 href="http://anywhr.de"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -444,7 +444,7 @@ export default async function Home() {
             <div className="project-media">
               <img
                 src="https://loni.ai/wp-content/uploads/2021/08/Loni-logo_white-and-cyan_RGB-400-1-300x111.png"
-                alt="AppStoreMetrix Google Spreadsheet reporting add-on"
+                alt="Loni network management and automation platform"
                 loading="lazy"
               />
             </div>
@@ -461,7 +461,7 @@ export default async function Home() {
                 className="project-link"
                 href="https://loni.ai/"
                 rel="noopener"
-                 target="blank"
+                target="_blank"
               >
                 View Project
               </a>
@@ -471,7 +471,7 @@ export default async function Home() {
             <div className="project-media">
               <img
                 src="https://drive.google.com/thumbnail?authuser=0&sz=w463&id=19l0_U4v94G_DziyxInJ_zO-pXLqDOe57"
-                alt="AppStoreMetrix Google Spreadsheet reporting add-on"
+                alt="Real-time fleet management tracking dashboard"
                 loading="lazy"
               />
             </div>
@@ -482,9 +482,8 @@ export default async function Home() {
                 ReactJs, NodeJs, ExpressJs, JavaScript, Docker, CSS Grid
               </p>
               <p>
-                Application for vehicle tracking in real time and displaying
-                it's information while can provide statistical data for it's
-                track movement.
+                A real-time vehicle tracking application that displays fleet
+                information and provides statistical movement data.
               </p>
               <span className="project-link">Not Public</span>
             </div>

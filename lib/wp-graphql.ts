@@ -1,6 +1,29 @@
 const API_URL = "https://wonderit-wp-wordpress.server.wonderit.io/graphql";
 
-async function fetchAPI(query: string, { variables }: { variables?: any } = {}) {
+type FeaturedImage = {
+  node: {
+    sourceUrl: string;
+    altText?: string;
+  };
+};
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  excerpt?: string;
+  content?: string;
+  slug: string;
+  date: string;
+  modified?: string;
+  featuredImage?: FeaturedImage;
+  categories?: { nodes: Array<{ name: string; slug: string }> };
+  author?: { node?: { name: string } };
+};
+
+async function fetchAPI(
+  query: string,
+  { variables }: { variables?: Record<string, unknown> } = {},
+) {
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(API_URL, {
@@ -13,6 +36,10 @@ async function fetchAPI(query: string, { variables }: { variables?: any } = {}) 
     next: { revalidate: 60 }, // Revalidate every 60 seconds
   });
 
+  if (!res.ok) {
+    throw new Error(`WordPress API request failed with status ${res.status}`);
+  }
+
   const json = await res.json();
   if (json.errors) {
     console.error("GraphQL Errors:", json.errors);
@@ -21,17 +48,23 @@ async function fetchAPI(query: string, { variables }: { variables?: any } = {}) 
   return json.data;
 }
 
-export async function getAllPosts() {
-  const data = await fetchAPI(
-    `
-    query AllPosts {
-      posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const posts: BlogPost[] = [];
+  let after: string | null = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const data = await fetchAPI(
+      `
+    query AllPosts($after: String) {
+      posts(first: 100, after: $after, where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
           id
           title
           excerpt
           slug
           date
+          modified
           featuredImage {
             node {
               sourceUrl
@@ -50,24 +83,36 @@ export async function getAllPosts() {
             }
           }
         }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
       }
     }
-  `
-  );
+  `,
+      { variables: { after } },
+    );
 
-  return data?.posts?.nodes;
+    posts.push(...((data?.posts?.nodes || []) as BlogPost[]));
+    after = data?.posts?.pageInfo?.endCursor || null;
+    hasNextPage = Boolean(data?.posts?.pageInfo?.hasNextPage && after);
+  }
+
+  return posts;
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const data = await fetchAPI(
     `
     query PostBySlug($id: ID!, $idType: PostIdType!) {
       post(id: $id, idType: $idType) {
         id
         title
+        excerpt
         content
         slug
         date
+        modified
         featuredImage {
           node {
             sourceUrl
@@ -96,7 +141,7 @@ export async function getPostBySlug(slug: string) {
     }
   );
 
-  return data?.post;
+  return (data?.post as BlogPost | null) || null;
 }
 
 export async function getProjects() {
@@ -142,4 +187,3 @@ export async function getTestimonialLogos() {
 
   return data?.testimonialLogos?.nodes || [];
 }
-

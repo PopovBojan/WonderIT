@@ -5,11 +5,10 @@ import { getProjects } from '@/lib/wp-graphql';
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title:
-    "Our Work | Web Apps, Mobile Apps & SaaS Projects | wonderIT",
+  title: "Software Projects & Case Studies | WonderIT",
 
   description:
-    "Explore software projects built by wonderIT including mobile apps, SaaS platforms, real-time tracking systems, sports analytics tools, fleet management software, automation systems, and AI-powered applications.",
+    "Explore WonderIT web, mobile, SaaS, sports technology, real-time tracking, automation, and AI software projects.",
 
   keywords: [
     "software development portfolio",
@@ -47,7 +46,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "https://wonderit.io/images/wonderIT-logo.webp",
+        url: "https://wonderit.io/opengraph-image",
         width: 1200,
         height: 630,
         alt: "wonderIT Portfolio",
@@ -72,15 +71,26 @@ interface Project {
   content: string;
 }
 
+interface WordPressProject {
+  title?: string;
+  projectFields?: {
+    externalLink?: string;
+    projectImageUrl?: string;
+    techStack?: string;
+    projectCategory?: string | string[];
+    projectDescription?: string;
+  };
+}
+
 export default async function WorkPage() {
-  let wpProjects: any[] = [];
+  let wpProjects: WordPressProject[] = [];
   try {
     wpProjects = await getProjects();
   } catch {
     wpProjects = [];
   }
 
-  const mappedWpProjects: Project[] = (wpProjects || []).map((node: any) => ({
+  const mappedWpProjects: Project[] = (wpProjects || []).map((node) => ({
     name: node.title || "",
     link: node.projectFields?.externalLink || "Not Public",
     image: node.projectFields?.projectImageUrl || null,

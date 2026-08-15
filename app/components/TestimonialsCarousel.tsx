@@ -101,9 +101,11 @@ function needsLightLogo(company: string, logoUrl?: string) {
 function CompanyLogoMark({
   company,
   logoUrl,
+  active,
 }: {
   company: string;
   logoUrl?: string;
+  active: boolean;
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -124,7 +126,7 @@ function CompanyLogoMark({
         src={logoUrl}
         alt={`${company} logo`}
         className="testimonial-logo-img"
-        loading="eager"
+        loading={active ? "eager" : "lazy"}
         decoding="async"
         referrerPolicy="no-referrer"
         onError={() => setFailed(true)}
@@ -223,6 +225,7 @@ export default function TestimonialsCarousel({
                       <CompanyLogoMark
                         company={item.company}
                         logoUrl={item.logoUrl}
+                        active={index === active}
                       />
                     </div>
                   </div>

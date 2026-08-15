@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts } from "@/lib/wp-graphql";
+import { getAllPosts, type BlogPost } from "@/lib/wp-graphql";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Blog | WonderIT - Software Engineering, AI & Digital Product Insights",
+  title: "Software Engineering & AI Insights | WonderIT",
 
   description:
-    "Explore insights from WonderIT on custom software development, AI-powered applications, scalable architecture, product engineering, automation, and modern digital experiences.",
+    "Practical WonderIT insights on custom software, scalable architecture, AI automation, SaaS engineering, and modern digital product development.",
 
   keywords: [
     "software development blog",
@@ -39,7 +39,7 @@ export const metadata = {
 
     images: [
       {
-        url: "https://wonderit.io/images/og-image.jpg",
+        url: "https://wonderit.io/opengraph-image",
         width: 1200,
         height: 630,
         alt: "WonderIT Blog",
@@ -58,7 +58,7 @@ export const metadata = {
     description:
       "Thoughts, insights, and practical knowledge on AI, software engineering, SaaS platforms, and modern digital products.",
 
-    images: ["https://wonderit.io/images/og-image.jpg"],
+    images: ["https://wonderit.io/twitter-image"],
   },
 
   alternates: {
@@ -67,7 +67,7 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-  let posts: any[] = [];
+  let posts: BlogPost[] = [];
   try {
     posts = (await getAllPosts()) || [];
   } catch {
@@ -96,7 +96,7 @@ export default async function BlogPage() {
 
         {/* Blog Grid */}
         <div className="grid grid-3 items-stretch py-12">
-          {posts && posts.map((post: any) => (
+          {posts && posts.map((post) => (
             <article key={post.id} className="glass rounded-2xl overflow-hidden flex flex-col h-550">
              
                 <div className="relative h-150 w-full overflow-hidden shrink-0">
@@ -111,7 +111,7 @@ export default async function BlogPage() {
                   ) : (
                     <div className="w-full h-full glass flex items-center justify-center p-8">
                       <Image
-                        src="https://wonderit.io/images/wonderIT-logo.webp"
+                        src="/wonderit-logo.webp"
                         alt="WonderIT Logo"
                         width={120}
                         height={60}
@@ -129,7 +129,7 @@ export default async function BlogPage() {
                   </h2>
                   <div
                     className="text-text-secondary text-m line-clamp-7"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                    dangerouslySetInnerHTML={{ __html: post.excerpt || "" }}
                   />
                 </div>
              
@@ -146,7 +146,7 @@ export default async function BlogPage() {
         {(!posts || posts.length === 0) && (
           <div className="text-center py-12 glass rounded-2xl">
             <h3 className="text-2xl mb-4">No posts found</h3>
-            <p className="text-text-secondary">We're currently preparing some amazing content for you. Stay tuned!</p>
+            <p className="text-text-secondary">We&apos;re currently preparing some amazing content for you. Stay tuned!</p>
           </div>
         )}
       </div>

@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description:
     "Software development for sports tech, SaaS platforms, real-time operations, automation, and AI-enhanced business workflows.",
   alternates: { canonical: "/industries" },
+  openGraph: {
+    title: "Industries | WonderIT Software Development",
+    description:
+      "Domain-aware software for sports tech, SaaS, real-time operations, logistics, automation, and AI workflows.",
+    url: "https://wonderit.io/industries",
+    type: "website",
+    images: [{ url: "https://wonderit.io/opengraph-image" }],
+  },
 };
 
 export default function IndustriesPage() {

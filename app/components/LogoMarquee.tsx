@@ -28,9 +28,9 @@ function LogoItem({ logo }: { logo: CompanyLogo }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logo.logoUrl}
-          alt=""
+          alt={`${logo.name} logo`}
           className={`logo-marquee__img${svg ? " logo-marquee__img--svg" : ""}`}
-          loading="eager"
+          loading="lazy"
           decoding="async"
           draggable={false}
           referrerPolicy="no-referrer"
@@ -69,8 +69,11 @@ export default function LogoMarquee({
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    setLogos(shuffleLogos(sourceLogos));
-    setReady(true);
+    const frame = window.requestAnimationFrame(() => {
+      setLogos(shuffleLogos(sourceLogos));
+      setReady(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [sourceLogos]);
 
   useEffect(() => {

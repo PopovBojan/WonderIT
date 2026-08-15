@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import HeaderLogo from "./components/HeaderLogo";
@@ -12,33 +11,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WonderIT | Custom Web, Mobile & AI-Enhanced Software Development",
+  title: "Custom Software Development Company | WonderIT",
 
   description:
-    "wonderIT builds modern web applications, mobile apps, SaaS platforms, automation systems, and custom software solutions using React, Next.js, React Native, Node.js, and cloud technologies. We also integrate AI and LLM-powered features into scalable digital products.",
-
-  keywords: [
-    "web development",
-    "mobile app development",
-    "custom software development",
-    "React development",
-    "Next.js development",
-    "React Native development",
-    "Node.js development",
-    "SaaS development",
-    "enterprise applications",
-    "software engineering",
-    "AI integrations",
-    "LLM integrations",
-    "automation systems",
-    "dashboard development",
-    "Firebase development",
-    "MongoDB development",
-    "real-time applications",
-    "custom web applications",
-    "startup software development",
-    "digital product development",
-  ],
+    "WonderIT builds custom web apps, mobile products, SaaS platforms, real-time systems, and AI automation for startups and growing businesses.",
 
   metadataBase: new URL("https://wonderit.io"),
 
@@ -51,7 +27,7 @@ export const metadata: Metadata = {
   publisher: "wonderIT",
 
   openGraph: {
-    title: "WonderIT | Custom Web, Mobile & AI-Enhanced Software Development",
+    title: "Custom Software Development Company | WonderIT",
 
     description:
       "We build scalable web platforms, mobile apps, SaaS products, automation tools, and AI-enhanced digital experiences.",
@@ -59,15 +35,6 @@ export const metadata: Metadata = {
     url: "https://wonderit.io",
 
     siteName: "wonderIT",
-
-    images: [
-      {
-        url: "https://wonderit.io/images/wonderIT-logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "wonderIT Logo",
-      },
-    ],
 
     locale: "en_US",
     type: "website",
@@ -80,7 +47,6 @@ export const metadata: Metadata = {
     description:
       "Custom software, web apps, mobile apps, SaaS platforms, and AI-powered integrations built with modern technologies.",
 
-    images: ["https://wonderit.io/images/wonderIT-logo.webp"],
   },
 
   robots: {
@@ -96,63 +62,40 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.className}>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="preconnect" href="https://calendly.com" />
-        <link
-          rel="preconnect"
-          href="https://assets.calendly.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://calendly.com" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "wonderIT",
-              url: "https://wonderit.io",
-              logo: "https://wonderit.io/images/wonderIT-logo.webp",
-              description:
-                "Software development company building web apps, mobile apps, SaaS platforms, automation systems, and AI-enhanced products.",
-              sameAs: [
-                "https://www.linkedin.com/company/wonderit",
-                "https://github.com/wonderit",
-              ],
-              knowsAbout: [
-                "React",
-                "Next.js",
-                "React Native",
-                "Node.js",
-                "Firebase",
-                "MongoDB",
-                "AI Integrations",
-                "LLM Applications",
-                "SaaS Development",
-                "Automation Systems",
-              ],
-              areaServed: "Worldwide",
-            }),
-          }}
-        />
-        <style>{`/* Inline critical CSS */\n/* Insert contents of 06_r287sbqzt5.css here */`}</style>
-      </Head>
       <body className="antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "wonderIT",
-              url: "https://wonderit.io",
-            }),
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://wonderit.io/#organization",
+                  name: "WonderIT",
+                  url: "https://wonderit.io/",
+                  logo: {
+                    "@type": "ImageObject",
+                    url: "https://wonderit.io/wonderit-logo.webp",
+                  },
+                  description:
+                    "Custom software development company building web apps, mobile products, SaaS platforms, real-time systems, and AI automation.",
+                  sameAs: [
+                    "https://www.linkedin.com/company/wonderit-io/",
+                    "https://www.facebook.com/wonderit.io",
+                    "https://www.instagram.com/wonderit_io/",
+                  ],
+                  areaServed: "Worldwide",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://wonderit.io/#website",
+                  name: "WonderIT",
+                  url: "https://wonderit.io/",
+                  publisher: { "@id": "https://wonderit.io/#organization" },
+                },
+              ],
+            }).replace(/</g, "\\u003c"),
           }}
         />
 

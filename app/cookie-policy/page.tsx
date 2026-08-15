@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cookie Policy | WonderIT",
+  description:
+    "Learn how WonderIT uses cookies for website functionality, analytics, performance, and security.",
+  alternates: { canonical: "/cookie-policy" },
+  robots: { index: false, follow: true },
+};
+
 export default function CookiePolicyPage() {
   return (
     <main className="container py-12 bg-secondary/20" >

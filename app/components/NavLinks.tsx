@@ -17,6 +17,16 @@ const NAV_LINKS = [
     description: "Projects and case studies",
   },
   {
+    href: "/services",
+    label: "Services",
+    description: "Web, mobile, SaaS and AI",
+  },
+  {
+    href: "/industries",
+    label: "Industries",
+    description: "Domain-specific software",
+  },
+  {
     href: "/about",
     label: "About",
     description: "Team, values, process",
@@ -75,7 +85,8 @@ export default function NavLinks() {
   }, [isOpen, close, open]);
 
   useEffect(() => {
-    close();
+    const frame = window.requestAnimationFrame(close);
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname, close]);
 
   useEffect(() => {

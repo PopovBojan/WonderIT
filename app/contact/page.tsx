@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import CalendlyEmbed from "../components/CalendlyEmbed";
 
 export const metadata: Metadata = {
-  title: "Contact wonderIT | Start Your Web, Mobile or Custom Software Project",
+  title: "Contact WonderIT | Start a Software Project",
 
   description:
-    "Get in touch with wonderIT to discuss web development, mobile apps, SaaS platforms, AI integrations, automation systems, and custom software solutions tailored to your business needs.",
+    "Contact WonderIT to discuss a custom web platform, mobile app, SaaS product, real-time system, or AI automation project.",
 
   keywords: [
     "contact wonderIT",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "https://wonderit.io/images/wonderIT-logo.webp",
+        url: "https://wonderit.io/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Contact wonderIT",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     description:
       "Reach out to wonderIT for custom software development, mobile apps, SaaS platforms, automation systems, and AI integrations.",
 
-    images: ["https://wonderit.io/images/wonderIT-logo.webp"],
+    images: ["https://wonderit.io/twitter-image"],
   },
 
   robots: {

@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | WonderIT",
+  description:
+    "Review the terms that apply when accessing and using the WonderIT website.",
+  alternates: { canonical: "/terms-of-service" },
+  robots: { index: false, follow: true },
+};
+
 export default function TermsOfServicePage() {
   return (
     <main className="container py-12 bg-secondary/20" >

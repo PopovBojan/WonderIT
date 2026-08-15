@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description:
     "Custom web platforms, mobile applications, AI automation, and real-time systems built with React, Next.js, React Native, and Node.js.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services | WonderIT Software Development",
+    description:
+      "Custom web platforms, mobile applications, AI automation, and real-time systems built for production.",
+    url: "https://wonderit.io/services",
+    type: "website",
+    images: [{ url: "https://wonderit.io/opengraph-image" }],
+  },
 };
 
 export default function ServicesPage() {

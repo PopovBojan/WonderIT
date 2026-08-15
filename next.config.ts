@@ -9,6 +9,35 @@ const nextConfig: NextConfig = {
   // Allow Cursor browser / local tooling on 127.0.0.1 during development.
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   output: 'standalone',
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "header",
+            key: "x-forwarded-proto",
+            value: "http",
+          },
+        ],
+        destination: "https://wonderit.io/:path*",
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

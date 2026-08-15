@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | WonderIT",
+  description:
+    "Learn how WonderIT collects, uses, and protects personal information submitted through this website.",
+  alternates: { canonical: "/privacy-policy" },
+  robots: { index: false, follow: true },
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <main className="container py-12 bg-secondary/20" >
@@ -7,7 +17,7 @@ export default function PrivacyPolicyPage() {
 
       <h2 className="text-4xl mb-6">Introduction</h2>
       <p className="text-m text-text-secondary max-w-2xl mb-6">
-        WonderIT ("we", "our", or "us") respects your privacy and is committed
+        WonderIT (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed
         to protecting your personal information.
       </p>
 
