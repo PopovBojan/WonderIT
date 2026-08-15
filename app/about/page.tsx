@@ -131,7 +131,7 @@ export default function AboutPage() {
             </div>
             <div className="about-feature-image relative rounded-2xl overflow-hidden">
               <Image
-                src="/our-team-wonderit.avif"
+                src="/our-team-wonderit.png"
                 alt="Our Mission"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

@@ -6,7 +6,6 @@ import type { Testimonial } from "../../lib/site-content";
 import "./testimonials.css";
 
 const AUTO_SCROLL_MS = 3000;
-const TRANSITION_MS = 650;
 
 const FALLBACK_QUOTES = [
   {
@@ -80,6 +79,9 @@ const DARK_LOGO_NAMES = new Set([
   "pufin",
   "byondxr",
   "byond xr",
+  "genentech",
+  "starmagic",
+  "star magic",
 ]);
 
 function needsLightLogo(company: string, logoUrl?: string) {
@@ -204,10 +206,6 @@ export default function TestimonialsCarousel({
         <div className="testimonial-viewport">
           <div
             className="testimonial-track"
-            style={{
-              transform: `translate3d(-${active * 100}%, 0, 0)`,
-              transitionDuration: `${TRANSITION_MS}ms`,
-            }}
           >
             {slides.map((item, index) => (
               <article
@@ -221,7 +219,6 @@ export default function TestimonialsCarousel({
               >
                 <div className="testimonial-card-frame">
                   <div className="testimonial-avatar-col">
-                    <span className="testimonial-accent-bar" aria-hidden="true" />
                     <div className="testimonial-avatar-ring">
                       <CompanyLogoMark
                         company={item.company}
@@ -312,4 +309,3 @@ export default function TestimonialsCarousel({
     </div>
   );
 }
-

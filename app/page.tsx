@@ -542,7 +542,7 @@ export default async function Home() {
           </p>
           <div className="about-media">
             <img
-              src="/our-team-wonderit.avif"
+              src="/our-team-wonderit.png"
               alt="WonderIT software development team collaboration"
               loading="lazy"
             />
