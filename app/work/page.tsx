@@ -1,5 +1,6 @@
 import ProjectCarousel from './ProjectCarousel';
 import type { Metadata } from "next";
+import PageIntro from "../components/PageIntro";
 import { getProjects } from '@/lib/wp-graphql';
 
 export const dynamic = "force-dynamic";
@@ -102,7 +103,7 @@ export default async function WorkPage() {
   }));
 
   return (
-    <main className="work-page subpage-padding">
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -149,21 +150,14 @@ export default async function WorkPage() {
           }),
         }}
       />
-      {/* Work Hero */}
-      <section className="py-12 ">
-        <div className="container">
-          <h1 className="text-5xl md:text-7xl mb-6">Our <span className="gradient-text">Work</span></h1>
-          <p className="text-m text-text-secondary mx-auto" style={{ margin: '0 auto' }}>
-            Explore our custom software, mobile app, SaaS, and AI-enhanced development projects built with React, Next.js, React Native, Node.js, and cloud technologies.
-          </p>
-        </div>
-      </section>
+      <PageIntro
+        label="Work"
+        title="Software shipped for real operators."
+        description="Explore custom software, mobile apps, SaaS, and AI-enhanced products built with React, Next.js, React Native, Node.js, and cloud technologies."
+      />
 
-      {/* Portfolio Carousel */}
-      <section >
-        <div className="container">
-          <ProjectCarousel projects={mappedWpProjects} />
-        </div>
+      <section className="section portfolio">
+        <ProjectCarousel projects={mappedWpProjects} />
       </section>
     </main>
   );

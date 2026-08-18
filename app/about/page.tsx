@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Metadata } from "next";
+import PageIntro from "../components/PageIntro";
 import { TEAM } from "@/lib/site-content";
 
 export const metadata: Metadata = {
@@ -56,34 +56,79 @@ export const metadata: Metadata = {
   },
 };
 
+const BUILD_ITEMS = [
+  {
+    title: "SaaS Platforms",
+    desc: "Subscription-based software platforms, internal dashboards, cloud applications, and scalable multi-user systems.",
+  },
+  {
+    title: "Mobile Applications",
+    desc: "Cross-platform iOS and Android applications built with React Native and modern mobile technologies.",
+  },
+  {
+    title: "Real-Time Systems",
+    desc: "Live dashboards, tracking systems, WebSocket applications, fleet monitoring, and real-time analytics platforms.",
+  },
+  {
+    title: "Sports Technology",
+    desc: "Athlete monitoring systems, sports analytics platforms, wearable integrations, and coaching applications.",
+  },
+  {
+    title: "Automation Systems",
+    desc: "Business workflow automation, reporting systems, Google Workspace integrations, and spreadsheet tools.",
+  },
+  {
+    title: "AI & LLM Integrations",
+    desc: "AI-enhanced applications, LLM-powered workflows, intelligent automation, and modern AI integrations.",
+  },
+];
+
+const VALUES = [
+  {
+    title: "Client Partnership",
+    desc: "We work closely with clients to build software solutions that solve real business problems.",
+  },
+  {
+    title: "Engineering Excellence",
+    desc: "We focus on scalable architecture, clean code, and long-term maintainability.",
+  },
+  {
+    title: "Modern Technologies",
+    desc: "We build with modern frameworks, cloud platforms, real-time systems, and AI-enhanced workflows.",
+  },
+  {
+    title: "Team Collaboration",
+    desc: "Strong communication and teamwork are essential to delivering successful digital products.",
+  },
+  {
+    title: "Continuous Innovation",
+    desc: "We constantly improve our processes, technologies, and development practices.",
+  },
+  {
+    title: "Reliable Delivery",
+    desc: "We are committed to delivering high-quality software with consistency and attention to detail.",
+  },
+];
+
 export default function AboutPage() {
   return (
-    <main className="about-page subpage-padding">
+    <main>
       <script
         id="about-page-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-
             "@type": "AboutPage",
-
             name: "About wonderIT",
-
             url: "https://wonderit.io/about",
-
             description:
               "Full-stack software development team specializing in web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced products.",
-
             mainEntity: {
               "@type": "Organization",
-
               name: "wonderIT",
-
               url: "https://wonderit.io",
-
               logo: "https://wonderit.io/wonderit-logo.webp",
-
               knowsAbout: [
                 "React",
                 "Next.js",
@@ -100,212 +145,109 @@ export default function AboutPage() {
           }),
         }}
       />
-      {/* About Hero */}
-      <section className="py-12">
-        <div className="container">
-          <h1 className="text-5xl md:text-7xl mb-6">About <span className="gradient-text">WonderIT</span></h1>
-          <p className="text-m text-text-secondary mx-auto" style={{ margin: '0 auto' }}>
-            WonderIT is a full-stack software development team building scalable web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced digital products. We partner with startups, businesses, and enterprises worldwide to create reliable software focused on performance, usability, and long-term growth.
+
+      <PageIntro
+        label="About"
+        title="A full-stack software team for products that need to last."
+        description="WonderIT builds scalable web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced digital products for startups, businesses, and enterprises worldwide."
+      />
+
+      <section className="section about">
+        <div className="about-copy">
+          <p className="section-label">The studio</p>
+          <h2>Building reliable digital products that scale.</h2>
+          <p className="lede">
+            Since launching WonderIT, we have worked on sports analytics
+            platforms, mobile applications, SaaS products, real-time tracking
+            systems, internal business tools, and automation platforms. The
+            team focuses on scalable, maintainable software using modern
+            technologies and development practices.
+          </p>
+          <p className="lede">
+            We have collaborated with startups, growing businesses, and
+            enterprise clients across multiple industries. From React and
+            Next.js platforms to React Native mobile apps, cloud
+            infrastructure, Firebase integrations, and AI-enhanced workflows,
+            we help companies turn ideas into production-ready digital products.
+          </p>
+          <p className="lede">
+            Strong software is built through collaboration, transparency, and
+            continuous improvement. Every project is approached with long-term
+            thinking, technical precision, and a focus on real business value.
+          </p>
+          <div className="about-media">
+            <img
+              src="/our-team-wonderit.png"
+              alt="WonderIT software development team collaboration"
+            />
+          </div>
+        </div>
+
+        <div>
+          <article className="about-panel">
+            <h3>Our Mission</h3>
+            <p>
+              Help businesses build modern digital products that are scalable,
+              reliable, and designed for real-world users. We combine
+              engineering expertise, product thinking, and modern technologies
+              to deliver software that creates long-term impact.
+            </p>
+          </article>
+
+          <article className="about-panel">
+            <h3>Our Vision</h3>
+            <p>
+              A future where businesses of all sizes can leverage modern
+              software, automation, and AI-enhanced systems to operate more
+              efficiently, grow faster, and deliver better experiences to their
+              users.
+            </p>
+          </article>
+
+          <article className="about-panel">
+            <h3>What We Build</h3>
+            <div className="build-grid">
+              {BUILD_ITEMS.map((item) => (
+                <div className="mini-card" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="about-panel">
+            <h3>Core Values</h3>
+            <div className="value-grid">
+              {VALUES.map((value) => (
+                <div className="mini-card" key={value.title}>
+                  <h3>{value.title}</h3>
+                  <p>{value.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="section team-section" aria-labelledby="team-title">
+        <div className="team-head">
+          <p className="section-label">Meet Our Team</p>
+          <h2 id="team-title">
+            The engineers and creators behind{" "}
+            <span className="gradient-text">WonderIT.</span>
+          </h2>
+          <p className="lede">
+            The engineers and creators behind WonderIT building modern software
+            products for businesses worldwide.
           </p>
         </div>
-      </section>
 
-      <section className="py-12">
-        <div className="container">
-          <div className="grid-2">
-            <div>
-              <h2 className="text-4xl mb-6"> Building Reliable Digital Products <span className="gradient-text">That Scale</span></h2>
-              <p className="text-text-secondary mb-6">
-                Since launching wonderIT, we have worked on a wide range of software products including sports analytics platforms, mobile applications, SaaS products, real-time tracking systems, internal business tools, and automation platforms. Our team focuses on building scalable and maintainable software using modern technologies and development practices.
-              </p>
-
-              <p className="text-text-secondary mb-6">
-                Over the years, we have collaborated with startups, growing businesses, and enterprise clients across multiple industries. From React and Next.js platforms to React Native mobile apps, cloud infrastructure, Firebase integrations, and AI-enhanced workflows, we help companies turn ideas into production-ready digital products.
-              </p>
-
-              <p className="text-text-secondary">
-                We believe strong software is built through collaboration, transparency, and continuous improvement. Every project we take on is approached with long-term thinking, technical precision, and a focus on delivering real business value.
-              </p>
-            </div>
-            <div className="about-feature-image relative rounded-2xl overflow-hidden">
-              <Image
-                src="/our-team-wonderit.png"
-                alt="Our Mission"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="container">
-          <div className="grid-2">
-            <div>
-              <h2 className="text-4xl mb-6">Our <span className="gradient-text">Mission</span></h2>
-              <p className="text-text-secondary">
-                Our mission is to help businesses build modern digital products that are scalable, reliable, and designed for real-world users. We combine engineering expertise, product thinking, and modern technologies to deliver software that creates long-term impact.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-4xl mb-6">Our <span className="gradient-text">Vision</span></h2>
-              <p className="text-text-secondary">
-                We envision a future where businesses of all sizes can leverage modern software, automation, and AI-enhanced systems to operate more efficiently, grow faster, and deliver better experiences to their users.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-12 ">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl mb-6">
-              What We <span className="gradient-text">Build</span>
-            </h2>
-
-            <p className="text-text-secondary max-w-3xl mx-auto mb-6">
-              Our experience spans multiple industries and software categories,
-              from SaaS platforms and mobile applications to automation systems,
-              real-time analytics, and AI-enhanced digital products.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {/* SaaS */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                SaaS Platforms
-              </h3>
-
-              <p className="text-text-secondary">
-                Subscription-based software platforms, internal dashboards,
-                cloud applications, and scalable multi-user systems.
-              </p>
-            </div>
-
-            {/* Mobile Apps */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                Mobile Applications
-              </h3>
-
-              <p className="text-text-secondary">
-                Cross-platform iOS and Android applications built with
-                React Native and modern mobile technologies.
-              </p>
-            </div>
-
-            {/* Real-Time Systems */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                Real-Time Systems
-              </h3>
-
-              <p className="text-text-secondary">
-                Live dashboards, tracking systems, WebSocket applications,
-                fleet monitoring, and real-time analytics platforms.
-              </p>
-            </div>
-
-            {/* Sports Technology */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                Sports Technology
-              </h3>
-
-              <p className="text-text-secondary">
-                Athlete monitoring systems, sports analytics platforms,
-                wearable integrations, and coaching applications.
-              </p>
-            </div>
-
-            {/* Automation */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                Automation Systems
-              </h3>
-
-              <p className="text-text-secondary">
-                Business workflow automation, reporting systems,
-                Google Workspace integrations, and spreadsheet tools.
-              </p>
-            </div>
-
-            {/* AI */}
-            <div className="glass p-8 rounded-2xl">
-              <h3 className="text-2xl mb-4 gradient-text">
-                AI & LLM Integrations
-              </h3>
-
-              <p className="text-text-secondary">
-                AI-enhanced applications, LLM-powered workflows,
-                intelligent automation, and modern AI integrations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-secondary/10">
-        <div className="container">
-          <h2 className="text-4xl text-center mb-6">Our Core <span className="gradient-text">Values</span></h2>
-          <div className="grid-3">
-            {[
-              {
-                title: "Client Partnership",
-                desc: "We work closely with clients to build software solutions that solve real business problems."
-              },
-              {
-                title: "Engineering Excellence",
-                desc: "We focus on scalable architecture, clean code, and long-term maintainability."
-              },
-              {
-                title: "Modern Technologies",
-                desc: "We build with modern frameworks, cloud platforms, real-time systems, and AI-enhanced workflows."
-              },
-              {
-                title: "Team Collaboration",
-                desc: "Strong communication and teamwork are essential to delivering successful digital products."
-              },
-              {
-                title: "Continuous Innovation",
-                desc: "We constantly improve our processes, technologies, and development practices."
-              },
-              {
-                title: "Reliable Delivery",
-                desc: "We are committed to delivering high-quality software with consistency and attention to detail."
-              }
-            ].map((value, index) => (
-              <div key={index} className="glass p-8 rounded-2xl text-center">
-                <h3 className="text-2xl mb-4 gradient-text">{value.title}</h3>
-                <p className="text-text-secondary">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl mb-6">Meet Our <span className="gradient-text">Team</span></h2>
-            <p className="text-text-secondary max-w-2xl mx-auto mb-6">
-              The engineers and creators behind wonderIT building modern software products for businesses worldwide.
-            </p>
-          </div>
-
-           <div className="team-grid">
+        <div className="team-grid">
           {TEAM.map((member) => (
             <article key={member.name} className="team-card">
               <div className="team-photo">
-                <img
-                  src={member.image}
-                  alt={member.alt}
-                  loading="lazy"
-                />
+                <img src={member.image} alt={member.alt} loading="lazy" />
               </div>
               <div>
                 <h3>{member.name}</h3>
@@ -313,7 +255,6 @@ export default function AboutPage() {
               </div>
             </article>
           ))}
-        </div>
         </div>
       </section>
     </main>

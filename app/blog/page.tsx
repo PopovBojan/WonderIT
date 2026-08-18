@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, type BlogPost } from "@/lib/wp-graphql";
+import PageIntro from "../components/PageIntro";
 
 export const dynamic = "force-dynamic";
 
@@ -75,31 +76,19 @@ export default async function BlogPage() {
   }
 
   return (
-    <main className="blog-page subpage-padding min-h-screen">
-      <div className="container py-12">
-        {/* Header Section */}
-        <div className="mb-16">
-          <h1 className="text-5xl md:text-7xl mb-6">
-            Insights & <span className="gradient-text">Innovations</span>
-          </h1>
-          <p className="text-m text-text-secondary  mb-6">
-            Discover insights on modern software engineering, AI-powered
-            applications, scalable architecture, automation systems, and
-            digital product strategy.
-          </p>
-          <p className="text-m text-text-secondary  mb-6">
-            At WonderIT, we share practical knowledge, technical expertise,
-            and industry perspectives to help businesses build smarter
-            digital experiences and future-ready products.
-          </p>
-        </div>
+    <main>
+      <PageIntro
+        label="Blog"
+        title="Insights on software, AI, and product."
+        description="Practical notes on modern software engineering, AI-powered applications, scalable architecture, automation, and digital product strategy."
+      />
 
-        {/* Blog Grid */}
-        <div className="grid grid-3 items-stretch py-12">
-          {posts && posts.map((post) => (
-            <article key={post.id} className="glass rounded-2xl overflow-hidden flex flex-col h-550">
-             
-                <div className="relative h-150 w-full overflow-hidden shrink-0">
+      <section className="section portfolio">
+        {posts.length > 0 ? (
+          <div className="project-grid">
+            {posts.map((post) => (
+              <article key={post.id} className="project-card">
+                <div className="project-media project-media--cover">
                   {post.featuredImage ? (
                     <Image
                       src={post.featuredImage.node.sourceUrl}
@@ -109,47 +98,34 @@ export default async function BlogPage() {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full glass flex items-center justify-center p-8">
-                      <Image
-                        src="/wonderit-logo.webp"
-                        alt="WonderIT Logo"
-                        width={120}
-                        height={60}
-                        className="object-contain "
-                      />
+                    <div className="project-placeholder">
+                      <span>WonderIT</span>
                     </div>
                   )}
-                  
                 </div>
-
-                <div className="h-300 p-8 pb-4 overflow-hidden">
-                  
-                  <h2 className="text-2xl mb-4 line-clamp-3">
-                    {post.title}
-                  </h2>
+                <div className="project-body">
+                  <h3>{post.title}</h3>
                   <div
-                    className="text-text-secondary text-m line-clamp-7"
+                    className="post-excerpt"
                     dangerouslySetInnerHTML={{ __html: post.excerpt || "" }}
                   />
+                  <Link href={`/blog/${post.slug}`} className="project-link">
+                    Read Article
+                  </Link>
                 </div>
-             
-
-              <div className="h-100 p-8 pt-0 flex items-center">
-                <Link href={`/blog/${post.slug}`} className="button primary">
-                  Read Article
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {(!posts || posts.length === 0) && (
-          <div className="text-center py-12 glass rounded-2xl">
-            <h3 className="text-2xl mb-4">No posts found</h3>
-            <p className="text-text-secondary">We&apos;re currently preparing some amazing content for you. Stay tuned!</p>
+              </article>
+            ))}
           </div>
+        ) : (
+          <article className="about-panel">
+            <h3>No posts found</h3>
+            <p>
+              We&apos;re currently preparing some amazing content for you. Stay
+              tuned!
+            </p>
+          </article>
         )}
-      </div>
+      </section>
     </main>
   );
 }

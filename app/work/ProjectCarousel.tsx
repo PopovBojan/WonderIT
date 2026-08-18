@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 
 interface Project {
@@ -128,7 +128,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       </div>
 
       {/* Page counter */}
-      <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.8rem', color: 'var(--text-secondary)', opacity: 0.6 }}>
+      <p className="lede" style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.8rem' }}>
         Page {page + 1} of {totalPages} · {projects.length} projects
       </p>
     </div>

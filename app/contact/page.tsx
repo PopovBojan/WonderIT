@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import CalendlyEmbed from "../components/CalendlyEmbed";
+import PageIntro from "../components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Contact WonderIT | Start a Software Project",
@@ -76,105 +77,84 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="contact-page subpage-padding">
-      {/* Contact Hero */}
-      <section className="py-12">
-        <div className="container">
-          <h1 className="text-5xl md:text-7xl mb-6">
-            Let&apos;s <span className="gradient-text">Connect</span>
-          </h1>
-          <p
-            className="text-m text-text-secondary mx-auto"
-            style={{ margin: "0 auto" }}
-          >
-            Ready to start your next project? Get in touch with us and
-            let&apos;s build something amazing.
+    <main>
+      <PageIntro
+        label="Contact"
+        title="Let's connect."
+        description="Ready to start your next project? Get in touch and we'll help turn it into production software."
+      />
+
+      <section className="section split">
+        <div>
+          <p className="section-label">Details</p>
+          <h2>Contact information.</h2>
+          <p className="lede">
+            Whether you have a question about features, pricing, or a new build,
+            the team is ready to answer it.
           </p>
-        </div>
-      </section>
 
-      {/* Contact Section */}
-      <section>
-        <div className="container mb-6">
-          <div
-            className="grid md:grid-2 gap-x-16 gap-y-24"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            }}
-          >
-            <div className="mb-6">
-              <h2 className="text-4xl mb-6">
-                Contact <span className="gradient-text">Information</span>
-              </h2>
-              <p className="text-text-secondary mb-10">
-                Whether you have a question about features, pricing, or anything
-                else, our team is ready to answer all your questions.
-              </p>
-
-              <div className="flex gap-6 items-center">
-                <div className="flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--accent-primary)"
-                    strokeWidth="2"
-                  >
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-m">Phone</h4>
-                  <p className="text-text-secondary">+389 (77) 631-316</p>
-                </div>
+          <div className="contact-details">
+            <div className="contact-detail">
+              <div className="contact-detail-icon" aria-hidden="true">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
               </div>
-              <div className="flex gap-6 items-center">
-                <div className="flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--accent-primary)"
-                    strokeWidth="2"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-m">Email</h4>
-                  <p className="text-text-secondary">hello@wonderit.io</p>
-                </div>
-              </div>
-              <div className="flex gap-6 items-center">
-                <div className="flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--accent-primary)"
-                    strokeWidth="2"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-m">Office</h4>
-                  <p className="text-text-secondary">
-                    Veniamin Machukovski 1, Skopje, North Macedonia
-                  </p>
-                </div>
+              <div>
+                <h3>Phone</h3>
+                <p>+389 (77) 631-316</p>
               </div>
             </div>
-
-            <div className="contact-calendly w-full">
-              <CalendlyEmbed />
+            <div className="contact-detail">
+              <div className="contact-detail-icon" aria-hidden="true">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3>Email</h3>
+                <p>hello@wonderit.io</p>
+              </div>
+            </div>
+            <div className="contact-detail">
+              <div className="contact-detail-icon" aria-hidden="true">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3>Office</h3>
+                <p>Veniamin Machukovski 1, Skopje, North Macedonia</p>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div className="contact-calendly">
+          <CalendlyEmbed />
         </div>
       </section>
     </main>
