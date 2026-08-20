@@ -72,9 +72,7 @@ export function testimonialLogosToCompanyLogos(
         onDark: logoLooksLight(name, logoUrl),
       };
     })
-    .filter((logo): logo is CompanyLogo & { logoUrl: string } =>
-      Boolean(logo.logoUrl),
-    );
+    .filter((logo) => Boolean(logo.logoUrl));
 }
 
 function slugify(value: string) {
