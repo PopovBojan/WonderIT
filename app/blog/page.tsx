@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, type BlogPost } from "@/lib/wp-graphql";
 import PageIntro from "../components/PageIntro";
+import PageCta from "../components/PageCta";
 
 export const dynamic = "force-dynamic";
 
@@ -76,11 +77,15 @@ export default async function BlogPage() {
   }
 
   return (
-    <main>
+    <main className="blog-page">
       <PageIntro
-        label="Blog"
-        title="Insights on software, AI, and product."
+        label="Insights"
+        title="Insights"
         description="Practical notes on modern software engineering, AI-powered applications, scalable architecture, automation, and digital product strategy."
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Insights" },
+        ]}
       />
 
       <section className="section portfolio">
@@ -126,6 +131,8 @@ export default async function BlogPage() {
           </article>
         )}
       </section>
+
+      <PageCta title="Have a product question that isn't on the blog? Ask the team directly." />
     </main>
   );
 }

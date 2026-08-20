@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageIntro from "../components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | WonderIT",
@@ -10,57 +11,64 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="container py-12 bg-secondary/20" >
-      <h1 className="text-5xl">Privacy Policy</h1>
+    <main>
+      <PageIntro
+        label="Legal"
+        title="Privacy Policy"
+        description="Last updated: June 2026"
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Privacy Policy" },
+        ]}
+      />
+      <article className="legal-doc">
+        <h2>Introduction</h2>
+        <p>
+          WonderIT (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is
+          committed to protecting your personal information.
+        </p>
 
-      <p className="text-m text-text-secondary max-w-2xl mb-6">Last updated: June 2026</p>
+        <h2>Information We Collect</h2>
+        <ul>
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Phone number (if provided)</li>
+          <li>Company information (if provided)</li>
+          <li>Analytics and website usage data</li>
+        </ul>
 
-      <h2 className="text-4xl mb-6">Introduction</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        WonderIT (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed
-        to protecting your personal information.
-      </p>
+        <h2>How We Use Information</h2>
+        <ul>
+          <li>Respond to inquiries</li>
+          <li>Provide requested services</li>
+          <li>Improve website performance</li>
+          <li>Communicate regarding projects</li>
+        </ul>
 
-      <h2 className="text-4xl mb-6">Information We Collect</h2>
-      <ul className="mb-6">
-        <li className="text-m text-text-secondary max-w-2xl">Name</li>
-        <li className="text-m text-text-secondary max-w-2xl">Email address</li>
-        <li className="text-m text-text-secondary max-w-2xl">Phone number (if provided)</li>
-        <li className="text-m text-text-secondary max-w-2xl">Company information (if provided)</li>
-        <li className="text-m text-text-secondary max-w-2xl">Analytics and website usage data</li>
-      </ul>
+        <h2>Data Security</h2>
+        <p>
+          We implement reasonable technical and organizational measures to
+          protect personal information.
+        </p>
 
-      <h2 className="text-4xl mb-6">How We Use Information</h2>
-      <ul className="mb-6">
-        <li className="text-m text-text-secondary max-w-2xl">Respond to inquiries</li>
-        <li className="text-m text-text-secondary max-w-2xl">Provide requested services</li>
-        <li className="text-m text-text-secondary max-w-2xl">Improve website performance</li>
-        <li className="text-m text-text-secondary max-w-2xl">Communicate regarding projects</li>
-      </ul>
+        <h2>Third-Party Services</h2>
+        <p>
+          We may use third-party providers such as hosting, analytics, email,
+          and cloud infrastructure services.
+        </p>
 
-      <h2 className="text-4xl mb-6">Data Security</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        We implement reasonable technical and organizational measures to
-        protect personal information.
-      </p>
+        <h2>Your Rights</h2>
+        <p>
+          You may request access, correction, or deletion of your personal
+          information by contacting us.
+        </p>
 
-      <h2 className="text-4xl mb-6">Third-Party Services</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        We may use third-party providers such as hosting, analytics, email,
-        and cloud infrastructure services.
-      </p>
-
-      <h2 className="text-4xl mb-6">Your Rights</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        You may request access, correction, or deletion of your personal
-        information by contacting us.
-      </p>
-
-      <h2 className="text-4xl mb-6">Contact</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        For privacy-related requests, please contact us through our Contact
-        page.
-      </p>
+        <h2>Contact</h2>
+        <p>
+          For privacy-related requests, please contact us through our Contact
+          page.
+        </p>
+      </article>
     </main>
   );
 }

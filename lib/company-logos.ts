@@ -6,7 +6,14 @@ export type CompanyLogo = {
   name: string;
   /** Optional image URL — used when present, otherwise a text wordmark is shown. */
   logoUrl?: string;
+  /** True when the mark is light/white and needs a dark tile. */
+  onDark?: boolean;
 };
+
+function logoLooksLight(name: string, url?: string) {
+  const haystack = `${name} ${url ?? ""}`.toLowerCase();
+  return /white|inverted|on[-_]?dark|light[-_]?logo/.test(haystack);
+}
 
 /** Prefer a stable Google-hosted thumbnail when WP stores Drive links. */
 export function normalizeLogoUrl(url?: string): string | undefined {
@@ -26,11 +33,15 @@ export function normalizeLogoUrl(url?: string): string | undefined {
 
 export function projectsToLogos(projects: Project[]): CompanyLogo[] {
   return projects
-    .map((project, index) => ({
-      id: `${slugify(project.name)}-${index}`,
-      name: project.name,
-      logoUrl: normalizeLogoUrl(project.image),
-    }))
+    .map((project, index) => {
+      const logoUrl = normalizeLogoUrl(project.image);
+      return {
+        id: `${slugify(project.name)}-${index}`,
+        name: project.name,
+        logoUrl,
+        onDark: logoLooksLight(project.name, logoUrl),
+      };
+    })
     .filter((logo) => Boolean(logo.logoUrl));
 }
 
@@ -53,10 +64,12 @@ export function testimonialLogosToCompanyLogos(
       const id = node.slug
         ? `${slugify(node.slug)}-${node.databaseId ?? index}`
         : `${slugify(name)}-${node.databaseId ?? index}`;
+      const logoUrl = normalizeLogoUrl(node.testimonialLogos?.image ?? undefined);
       return {
         id,
         name,
-        logoUrl: normalizeLogoUrl(node.testimonialLogos?.image ?? undefined),
+        logoUrl,
+        onDark: logoLooksLight(name, logoUrl),
       };
     })
     .filter((logo): logo is CompanyLogo & { logoUrl: string } =>

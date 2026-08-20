@@ -63,6 +63,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="antialiased">
+        {process.env.NODE_ENV === "development" ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html:
+                'try{navigator.serviceWorker&&navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(x){x.unregister()})});window.caches&&caches.keys().then(function(k){k.forEach(function(x){caches.delete(x)})})}catch(e){}',
+            }}
+          />
+        ) : null}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -110,14 +118,39 @@ export default function RootLayout({
 
         <footer className="site-footer">
           <div className="footer-inner">
+            <div className="footer-brand">
+              <HeaderLogo />
+              <p>
+                Custom software for web, mobile, SaaS, and AI — built by a team
+                you can talk to.
+              </p>
+            </div>
+            <div className="footer-nav">
+              <div>
+                <strong>Company</strong>
+                <Link href="/about">About</Link>
+                <Link href="/work">Work</Link>
+                <Link href="/blog">Insights</Link>
+                <Link href="/contact">Contact</Link>
+              </div>
+              <div>
+                <strong>What we do</strong>
+                <Link href="/services">Services</Link>
+                <Link href="/industries">Industries</Link>
+                <Link href="/work">Case studies</Link>
+              </div>
+              <div>
+                <strong>Legal</strong>
+                <Link href="/privacy-policy">Privacy Policy</Link>
+                <Link href="/terms-of-service">Terms of Service</Link>
+                <Link href="/cookie-policy">Cookie Policy</Link>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
             <p className="footer-copyright">
               © {new Date().getFullYear()} WonderIT. All rights reserved.
             </p>
-            <nav className="footer-links" aria-label="Legal">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-of-service">Terms of Service</Link>
-              <Link href="/cookie-policy">Cookie Policy</Link>
-            </nav>
             <div className="socials" aria-label="Social links">
               <a
                 href="https://www.facebook.com/wonderit.io#"

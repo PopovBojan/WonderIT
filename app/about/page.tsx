@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageIntro from "../components/PageIntro";
-import { TEAM } from "@/lib/site-content";
+import PageCta from "../components/PageCta";
+import TeamGrid from "../components/TeamGrid";
 
 export const metadata: Metadata = {
   title: "About WonderIT | Software Development Team",
@@ -148,9 +149,32 @@ export default function AboutPage() {
 
       <PageIntro
         label="About"
-        title="A full-stack software team for products that need to last."
-        description="WonderIT builds scalable web applications, mobile apps, SaaS platforms, automation systems, and AI-enhanced digital products for startups, businesses, and enterprises worldwide."
+        title="About us"
+        description="WonderIT is a friendly full-stack studio. We build web apps, mobile products, SaaS platforms, and AI-enhanced systems for startups and growing teams worldwide."
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "About" },
+        ]}
       />
+
+      <section className="section proof-strip about-stats" aria-label="Studio strengths">
+        <div className="proof">
+          <strong>9</strong>
+          <span>people, one accountable team</span>
+        </div>
+        <div className="proof">
+          <strong>40+</strong>
+          <span>products shipped for real operators</span>
+        </div>
+        <div className="proof">
+          <strong>1</strong>
+          <span>team from first sketch to production</span>
+        </div>
+        <div className="proof">
+          <strong>AI</strong>
+          <span>where it removes real operational work</span>
+        </div>
+      </section>
 
       <section className="section about">
         <div className="about-copy">
@@ -232,31 +256,20 @@ export default function AboutPage() {
 
       <section className="section team-section" aria-labelledby="team-title">
         <div className="team-head">
-          <p className="section-label">Meet Our Team</p>
+          <p className="section-label">Meet the team</p>
           <h2 id="team-title">
-            The engineers and creators behind{" "}
-            <span className="gradient-text">WonderIT.</span>
+            Same faces from the first call to{" "}
+            <span className="gradient-text">launch.</span>
           </h2>
           <p className="lede">
-            The engineers and creators behind WonderIT building modern software
-            products for businesses worldwide.
+            Engineers, design, QA, and growth — a studio small enough to care
+            about the product, and senior enough to ship it.
           </p>
         </div>
-
-        <div className="team-grid">
-          {TEAM.map((member) => (
-            <article key={member.name} className="team-card">
-              <div className="team-photo">
-                <img src={member.image} alt={member.alt} loading="lazy" />
-              </div>
-              <div>
-                <h3>{member.name}</h3>
-                <p>{member.title}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <TeamGrid />
       </section>
+
+      <PageCta title="Want a studio you can actually talk to? Start with a conversation." />
     </main>
   );
 }

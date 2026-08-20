@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageIntro from "../components/PageIntro";
 
 export const metadata: Metadata = {
   title: "Cookie Policy | WonderIT",
@@ -10,29 +11,36 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <main className="container py-12 bg-secondary/20" >
-      <h1 className="text-5xl">Cookie Policy</h1>
+    <main>
+      <PageIntro
+        label="Legal"
+        title="Cookie Policy"
+        description="Last updated: June 2026"
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Cookie Policy" },
+        ]}
+      />
+      <article className="legal-doc">
+        <h2>What Are Cookies?</h2>
+        <p>
+          Cookies are small text files stored on your device that help improve
+          website functionality and user experience.
+        </p>
 
-      <p className="text-m text-text-secondary max-w-2xl mb-6">Last updated: June 2026</p>
+        <h2>How We Use Cookies</h2>
+        <ul>
+          <li>Website functionality</li>
+          <li>Analytics and performance measurement</li>
+          <li>Security and fraud prevention</li>
+        </ul>
 
-      <h2 className="text-4xl mb-6">What Are Cookies?</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        Cookies are small text files stored on your device that help improve
-        website functionality and user experience.
-      </p>
-
-      <h2 className="text-4xl mb-6">How We Use Cookies</h2>
-      <ul className="mb-6">
-        <li className="text-m text-text-secondary max-w-2xl">Website functionality</li>
-        <li className="text-m text-text-secondary max-w-2xl">Analytics and performance measurement</li>
-        <li className="text-m text-text-secondary max-w-2xl">Security and fraud prevention</li>
-      </ul>
-
-      <h2 className="text-4xl mb-6">Managing Cookies</h2>
-      <p className="text-m text-text-secondary max-w-2xl mb-6">
-        Most browsers allow you to control or disable cookies through browser
-        settings.
-      </p>
+        <h2>Managing Cookies</h2>
+        <p>
+          Most browsers allow you to control or disable cookies through browser
+          settings.
+        </p>
+      </article>
     </main>
   );
 }

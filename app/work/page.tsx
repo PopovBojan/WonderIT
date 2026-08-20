@@ -1,7 +1,9 @@
 import ProjectCarousel from './ProjectCarousel';
 import type { Metadata } from "next";
 import PageIntro from "../components/PageIntro";
-import { getProjects } from '@/lib/wp-graphql';
+import PageCta from "../components/PageCta";
+import { getProjects } from "@/lib/wp-graphql";
+import { mergeProjects, type Project } from "@/lib/site-content";
 
 export const dynamic = "force-dynamic";
 
@@ -63,15 +65,6 @@ export const metadata: Metadata = {
   },
 };
 
-interface Project {
-  name: string;
-  link: string;
-  image: string | null;
-  stack: string;
-  category: string;
-  content: string;
-}
-
 interface WordPressProject {
   title?: string;
   projectFields?: {
@@ -94,16 +87,25 @@ export default async function WorkPage() {
   const mappedWpProjects: Project[] = (wpProjects || []).map((node) => ({
     name: node.title || "",
     link: node.projectFields?.externalLink || "Not Public",
-    image: node.projectFields?.projectImageUrl || null,
+    image: node.projectFields?.projectImageUrl || undefined,
     stack: node.projectFields?.techStack || "",
-    category: (Array.isArray(node.projectFields?.projectCategory)
-      ? node.projectFields.projectCategory[0]
-      : node.projectFields?.projectCategory) || "web-apps",
+    category:
+      (Array.isArray(node.projectFields?.projectCategory)
+        ? node.projectFields.projectCategory[0]
+        : node.projectFields?.projectCategory) || "web-apps",
     content: node.projectFields?.projectDescription || "",
   }));
 
+  const projects = mergeProjects(mappedWpProjects)
+    .filter((project) => Boolean(project.name))
+    .map((project) => ({
+      ...project,
+      featured:
+        project.featured || project.name.toLowerCase() === "next11",
+    }));
+
   return (
-    <main>
+    <main className="work-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -111,7 +113,7 @@ export default async function WorkPage() {
             "@context": "https://schema.org",
             "@type": "ItemList",
             name: "wonderIT Portfolio Projects",
-            itemListElement: mappedWpProjects.map((project, index) => ({
+            itemListElement: projects.map((project, index) => ({
               "@type": "ListItem",
               position: index + 1,
               item: {
@@ -154,11 +156,17 @@ export default async function WorkPage() {
         label="Work"
         title="Software shipped for real operators."
         description="Explore custom software, mobile apps, SaaS, and AI-enhanced products built with React, Next.js, React Native, Node.js, and cloud technologies."
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Work" },
+        ]}
       />
 
       <section className="section portfolio">
-        <ProjectCarousel projects={mappedWpProjects} />
+        <ProjectCarousel projects={projects} />
       </section>
+
+      <PageCta title="Like the work? Let's talk about the product you want to ship next." />
     </main>
   );
 }

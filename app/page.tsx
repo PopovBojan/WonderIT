@@ -3,9 +3,10 @@ import {
   COMPANY_LOGOS,
   testimonialLogosToCompanyLogos,
 } from "../lib/company-logos";
-import { TEAM, TESTIMONIALS } from "../lib/site-content";
+import { TESTIMONIALS } from "../lib/site-content";
 import { getTestimonialLogos } from "../lib/wp-graphql";
 import LogoMarqueeClient from "./components/LogoMarqueeClient";
+import TeamGrid from "./components/TeamGrid";
 import TestimonialsSection from "./components/TestimonialsSection";
 
 export default async function Home() {
@@ -22,72 +23,177 @@ export default async function Home() {
     <main className="home-page">
       <section className="section hero" aria-labelledby="hero-title">
         <div>
-          <p className="eyebrow">Web, mobile, AI</p>
+          <p className="eyebrow">Software studio</p>
           <h1 id="hero-title">
-            Custom software development that moves from idea to{" "}
+            Software that ships from idea to{" "}
             <span className="gradient-text">real users.</span>
           </h1>
           <p className="hero-copy">
-            WonderIT designs and builds scalable web applications, SaaS
-            platforms, mobile apps, real-time systems, and AI-enabled workflows
-            for teams that need production software, not another prototype.
+            WonderIT is a full-stack studio powering businesses to build, run,
+            and grow with web, mobile, and AI at the core.
           </p>
           <div className="actions">
-            <a className="button primary" href="/work">
-              See the approach
+            <a className="button primary" href="/contact">
+              Start a conversation
             </a>
-            <a
-              className="button secondary"
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book a call
+            <a className="button secondary" href="/work">
+              See the work
             </a>
           </div>
+          <ul className="hero-meta" aria-label="What WonderIT builds">
+            <li>
+              <span>Web</span>
+              <strong>18</strong>
+              <p>Platforms, portals, and APIs</p>
+            </li>
+            <li>
+              <span>Mobile</span>
+              <strong>9</strong>
+              <p>iOS and Android with React Native</p>
+            </li>
+            <li>
+              <span>SaaS</span>
+              <strong>12</strong>
+              <p>Multi-user products on cloud</p>
+            </li>
+            <li>
+              <span>AI</span>
+              <strong>7</strong>
+              <p>LLM workflows in live ops</p>
+            </li>
+          </ul>
         </div>
 
-        <div
-          className="hero-visual"
-          aria-label="Product dashboard illustration"
-        >
-          <div className="workbench">
-            <div className="workbench-bar">
-              <div className="dots" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-              <span>production-monitor.wit</span>
+        <div className="hero-visual" aria-label="WonderIT product in production">
+          <div className="hero-board">
+            <div className="hero-board__top">
+              <span className="hero-board__pulse">In production</span>
+              <span>wonderit.io</span>
             </div>
-            <div className="dashboard">
-              <div className="panel">
-                <small>Release velocity</small>
-                <div className="metric">4.8x</div>
-                <div className="bars">
-                  <i />
-                  <i />
-                  <i />
+
+            <div className="hero-board__kpis">
+              <div>
+                <small>Uptime</small>
+                <strong>99.9%</strong>
+                <em className="is-up">+0.2</em>
+              </div>
+              <div>
+                <small>Active users</small>
+                <strong>12.4k</strong>
+                <em className="is-up">+18%</em>
+              </div>
+              <div>
+                <small>p95 latency</small>
+                <strong>48ms</strong>
+                <em className="is-up">-12ms</em>
+              </div>
+              <div>
+                <small>Deploys</small>
+                <strong>36</strong>
+                <em>this week</em>
+              </div>
+            </div>
+
+            <div className="hero-board__charts">
+              <div className="hero-board__panel">
+                <div className="hero-board__panel-head">
+                  <small>Release velocity</small>
+                  <span className="hero-board__delta is-up">+18%</span>
+                </div>
+                <strong>4.8x</strong>
+                <div className="hero-board__cols" aria-hidden="true">
+                  <i style={{ height: "42%" }} />
+                  <i style={{ height: "58%" }} />
+                  <i style={{ height: "46%" }} />
+                  <i style={{ height: "72%" }} />
+                  <i style={{ height: "64%" }} />
+                  <i style={{ height: "88%" }} />
+                  <i style={{ height: "76%" }} />
                 </div>
               </div>
-              <div className="panel">
-                <small>Signal quality</small>
-                <div className="metric">98</div>
-                <div className="bars">
-                  <i />
-                  <i />
-                  <i />
+
+              <div className="hero-board__panel">
+                <div className="hero-board__panel-head">
+                  <small>Signal quality</small>
+                  <span>NPS 74</span>
+                </div>
+                <strong>98</strong>
+                <svg
+                  className="hero-board__area"
+                  viewBox="0 0 220 72"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient id="heroArea" x1="0" y1="0" x2="0" y2="1">
+                      <stop stopColor="#8e4de8" stopOpacity="0.35" />
+                      <stop offset="1" stopColor="#8e4de8" stopOpacity="0" />
+                    </linearGradient>
+                    <linearGradient id="heroLine" x1="0" y1="0" x2="1" y2="0">
+                      <stop stopColor="#8e4de8" />
+                      <stop offset="1" stopColor="#19d5c4" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0 52 C18 48 28 28 46 32 C64 36 72 14 90 18 C108 22 118 40 136 28 C154 16 168 22 186 12 C198 6 210 16 220 10 L220 72 L0 72 Z"
+                    fill="url(#heroArea)"
+                  />
+                  <path
+                    d="M0 52 C18 48 28 28 46 32 C64 36 72 14 90 18 C108 22 118 40 136 28 C154 16 168 22 186 12 C198 6 210 16 220 10"
+                    stroke="url(#heroLine)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="hero-board__split">
+              <div className="hero-board__coverage">
+                <div className="hero-board__ring" aria-hidden="true">
+                  <span>76%</span>
+                </div>
+                <div>
+                  <small>Test coverage</small>
+                  <b>+6 pts</b>
                 </div>
               </div>
-              <div className="panel wide">
-                <small>Build pipeline</small>
-                <div className="pipeline">
-                  <span>Discover</span>
-                  <span>Design</span>
-                  <span>Ship</span>
-                  <span>Scale</span>
-                </div>
-              </div>
+              <ul className="hero-board__lanes">
+                <li>
+                  <span>Web</span>
+                  <b>14</b>
+                  <i style={{ width: "86%" }} />
+                </li>
+                <li>
+                  <span>Mobile</span>
+                  <b>9</b>
+                  <i style={{ width: "62%" }} />
+                </li>
+                <li>
+                  <span>AI</span>
+                  <b>7</b>
+                  <i style={{ width: "48%" }} />
+                </li>
+              </ul>
+            </div>
+
+            <div className="hero-board__pipeline">
+              <span>
+                <b>8d</b>
+                Discover
+              </span>
+              <span>
+                <b>5d</b>
+                Design
+              </span>
+              <span>
+                <b>12d</b>
+                Ship
+              </span>
+              <span>
+                <b>∞</b>
+                Scale
+              </span>
             </div>
           </div>
           <div className="float-card">
@@ -104,67 +210,74 @@ export default async function Home() {
 
       <section className="section proof-strip" aria-label="WonderIT strengths">
         <div className="proof">
-          <strong>01</strong>
-          <span>Product thinking before implementation</span>
+          <strong>9</strong>
+          <span>people, one accountable team</span>
         </div>
         <div className="proof">
-          <strong>02</strong>
-          <span>Architecture that can survive growth</span>
+          <strong>40+</strong>
+          <span>products shipped for real operators</span>
         </div>
         <div className="proof">
-          <strong>03</strong>
-          <span>Interfaces built for daily operators</span>
+          <strong>1</strong>
+          <span>team from first sketch to production</span>
         </div>
         <div className="proof">
-          <strong>04</strong>
-          <span>Automation where it removes real work</span>
+          <strong>AI</strong>
+          <span>where it removes real operational work</span>
         </div>
       </section>
 
-      <section id="services" className="section split">
-        <div>
-          <p className="section-label">Services</p>
-          <h2>
-            Focused teams for serious{" "}
-            <span className="gradient-text">software builds.</span>
-          </h2>
-          <p className="lede-black">
-            From first product decisions to shipped systems, the team covers the
-            engineering lanes that matter most for modern digital products.
-          </p>
-        </div>
-        <div className="service-grid">
-          <article className="service">
-            <div className="icon">W</div>
-            <h3>Custom Web Platforms</h3>
+      <section id="services" className="section pillars-band">
+        <p className="section-label">What we do</p>
+        <h2>We engineer every stage of your product.</h2>
+        <div className="pillars">
+          <article className="pillar">
+            <span className="pillar-index">01</span>
+            <p className="pillar-kicker">Build</p>
+            <h3>Software Engineering</h3>
             <p>
-              React and Next.js applications, secure APIs, dashboards, portals,
-              and internal tools.
+              Web platforms, mobile apps, and SaaS products shaped with the
+              same people from the first decision to production.
             </p>
+            <ul>
+              <li>Custom Web Platforms</li>
+              <li>Mobile Applications</li>
+              <li>SaaS Products</li>
+              <li>Quality-minded delivery</li>
+            </ul>
+            <a href="/services">Explore all services</a>
           </article>
-          <article className="service">
-            <div className="icon">M</div>
-            <h3>Mobile Applications</h3>
+          <article className="pillar">
+            <span className="pillar-index">02</span>
+            <p className="pillar-kicker">Think</p>
+            <h3>AI and Automation</h3>
             <p>
-              React Native apps for iOS and Android with resilient data flows
-              and polished product UX.
+              LLM workflows, reporting, and automation that sit inside the
+              tools operators already use — not as a side experiment.
             </p>
+            <ul>
+              <li>AI Services</li>
+              <li>Workflow Automation</li>
+              <li>Reporting Systems</li>
+              <li>Google Workspace tools</li>
+            </ul>
+            <a href="/services">Explore all services</a>
           </article>
-          <article className="service">
-            <div className="icon">A</div>
-            <h3>AI & Automation</h3>
+          <article className="pillar">
+            <span className="pillar-index">03</span>
+            <p className="pillar-kicker">Run</p>
+            <h3>Real-Time Operations</h3>
             <p>
-              LLM integrations, spreadsheet automation, reporting systems, and
-              workflow accelerators.
+              Live dashboards, logistics, and monitoring products that stay
+              reliable after launch — the systems people open every day.
             </p>
-          </article>
-          <article className="service">
-            <div className="icon">R</div>
-            <h3>Real-Time Systems</h3>
-            <p>
-              Live dashboards, logistics tools, WebSocket applications,
-              monitoring, and analytics products.
-            </p>
+            <ul>
+              <li>Live dashboards</li>
+              <li>Fleet and logistics</li>
+              <li>WebSocket applications</li>
+              <li>Analytics products</li>
+            </ul>
+            <a href="/industries">Explore industries</a>
           </article>
         </div>
       </section>
@@ -262,19 +375,25 @@ export default async function Home() {
           <div>
             <p className="section-label">Our Work</p>
             <h2 id="work-title">
-              Projects built for <span className="gradient-text">players, coaches, operators, and product teams.</span>
+              Projects built for{" "}
+              <span className="gradient-text">
+                players, coaches, operators, and product teams.
+              </span>
             </h2>
           </div>
           <p className="lede-black">
             A sample from the WonderIT portfolio: mobile apps, SaaS platforms,
             Google Workspace automation, encrypted communication, and travel
-            products. <a href="/work" className="project-link">View full portfolio</a>
+            products.{" "}
+            <a href="/work" className="project-link">
+              View full portfolio
+            </a>
           </p>
         </div>
 
-        <div className="project-grid">
-          <article className="project-card featured">
-            <div className="project-media">
+        <div className="project-grid home-featured">
+          <article className="project-card">
+            <div className="project-media project-media--cover">
               <img
                 src="https://cdn.prod.website-files.com/609a6a87708057326383b774/65a643e5c56b48d35b9382c7_Tiles.webp"
                 alt="Next11 football performance tracking app built with React Native"
@@ -284,9 +403,6 @@ export default async function Home() {
             <div className="project-body">
               <span className="project-kicker">Mobile apps</span>
               <h3>Next11</h3>
-              <p className="project-stack">
-                React Native, Node.js, Firebase, LLM
-              </p>
               <p>
                 A performance-tracking app for football players and teams, using
                 lightweight wearable tags to capture live physical, technical,
@@ -298,13 +414,13 @@ export default async function Home() {
                 rel="noopener"
                 target="_blank"
               >
-                View Project
+                Discover More
               </a>
             </div>
           </article>
 
           <article className="project-card">
-            <div className="project-media">
+            <div className="project-media project-media--cover">
               <img
                 src="https://better-coaching.dk/wp-content/uploads/2025/09/bc_camp_app_player1.png"
                 alt="BetterCoaching football coaching mobile app and SaaS platform"
@@ -314,13 +430,9 @@ export default async function Home() {
             <div className="project-body">
               <span className="project-kicker">Mobile apps</span>
               <h3>BetterCoaching</h3>
-              <p className="project-stack">
-                React, React Native, Node.js, MongoDB, LLM
-              </p>
               <p>
                 A football club platform for planning training, sharing
-                knowledge, managing drills, and improving coaching communication
-                across youth teams.
+                knowledge, managing drills, and improving coaching communication.
               </p>
               <a
                 className="project-link"
@@ -328,70 +440,13 @@ export default async function Home() {
                 rel="noopener"
                 target="_blank"
               >
-                View Project
+                Discover More
               </a>
             </div>
           </article>
 
           <article className="project-card">
-            <div className="project-media">
-              <img
-                src="https://drive.google.com/thumbnail?authuser=0&sz=w463&id=19NA2F_seYiNuin5Iu74v-DpJTbRLHdGF"
-                alt="Mobile daily news feed app built with React Native and Node.js"
-                loading="lazy"
-              />
-            </div>
-            <div className="project-body">
-              <span className="project-kicker">Mobile apps</span>
-              <h3>Mobile Daily News Feed App</h3>
-              <p className="project-stack">
-                React Native, Node.js, JavaScript, Flexbox
-              </p>
-              <p>
-                iOS news feed aggregator delivering daily news through API
-                services.
-              </p>
-              <a
-                className="project-link"
-                href="https://itunes.apple.com/mk/app/daily-feed-app/id1401337497"
-                rel="noopener"
-                target="_blank"
-              >
-                View Project
-              </a>
-            </div>
-          </article>
-
-          <article className="project-card">
-            <div className="project-media">
-              <img
-                src="https://drive.google.com/thumbnail?authuser=0&sz=w463&id=1na2Pj8dHqSUIaK8TlDC2fEZ6iVzFtRxq"
-                alt="AppStoreMetrix Google Spreadsheet reporting add-on"
-                loading="lazy"
-              />
-            </div>
-            <div className="project-body">
-              <span className="project-kicker">Google web</span>
-              <h3>AppStoreMetrix Addon</h3>
-              <p className="project-stack">
-                JavaScript, Google Apps Script, Firebase
-              </p>
-              <p>
-                Google Spreadsheet add-on for pulling reports from app stores,
-                analyzing data, and visualizing trends.
-              </p>
-              <a
-                className="project-link"
-                href="https://chrome.google.com/webstore/detail/appstoremetrix/eonflbgifkcopaagegpajbafilncjief?hl=en"
-                rel="noopener"
-                target="_blank"
-              >
-                View Project
-              </a>
-            </div>
-          </article>
-          <article className="project-card">
-            <div className="project-media">
+            <div className="project-media project-media--cover">
               <img
                 src="https://caseengine.com/wp-content/uploads/2025/04/caseengine-larger.png"
                 alt="Case Engine AI search visibility platform"
@@ -401,11 +456,9 @@ export default async function Home() {
             <div className="project-body">
               <span className="project-kicker">Web apps</span>
               <h3>Case Engine</h3>
-              <p className="project-stack">Wordpress, N8N</p>
               <p>
-                Case Engine builds the AI authority, Search Visibility, and
-                Local Presence that puts your firm at the top of AI Search,
-                Google, and Maps, so high-value cases come to you first.
+                AI authority, search visibility, and local presence so high-value
+                cases reach the right firm first.
               </p>
               <a
                 className="project-link"
@@ -413,79 +466,8 @@ export default async function Home() {
                 rel="noopener"
                 target="_blank"
               >
-                View Project
+                Discover More
               </a>
-            </div>
-          </article>
-
-          <article className="project-card">
-            <div className="project-media">
-              <div className="project-placeholder">
-                <span>Travel booking web application</span>
-              </div>
-            </div>
-            <div className="project-body">
-              <span className="project-kicker">Web apps</span>
-              <h3>Anywhr</h3>
-              <p className="project-stack">React, Node.js, Webpack, MongoDB</p>
-              <p>Web application for travel discovery and flight booking.</p>
-              <a
-                className="project-link"
-                href="http://anywhr.de"
-                rel="noopener"
-                target="_blank"
-              >
-                View Project
-              </a>
-            </div>
-          </article>
-
-          <article className="project-card">
-            <div className="project-media">
-              <img
-                src="https://loni.ai/wp-content/uploads/2021/08/Loni-logo_white-and-cyan_RGB-400-1-300x111.png"
-                alt="Loni network management and automation platform"
-                loading="lazy"
-              />
-            </div>
-            <div className="project-body">
-              <span className="project-kicker">Web apps</span>
-              <h3>Loni.ai</h3>
-              <p className="project-stack">ReactJs, ReactNative, NodeJs</p>
-              <p>
-                Real-time vendor agnostic network management tool for your
-                existing network, security, & cloud infrastructure with the
-                power of true ZeroCode Automation.
-              </p>
-              <a
-                className="project-link"
-                href="https://loni.ai/"
-                rel="noopener"
-                target="_blank"
-              >
-                View Project
-              </a>
-            </div>
-          </article>
-          <article className="project-card">
-            <div className="project-media">
-              <img
-                src="https://drive.google.com/thumbnail?authuser=0&sz=w463&id=19l0_U4v94G_DziyxInJ_zO-pXLqDOe57"
-                alt="Real-time fleet management tracking dashboard"
-                loading="lazy"
-              />
-            </div>
-            <div className="project-body">
-              <span className="project-kicker">Web apps</span>
-              <h3>FLEET MANAGEMENT TRACKING COMPANY</h3>
-              <p className="project-stack">
-                ReactJs, NodeJs, ExpressJs, JavaScript, Docker, CSS Grid
-              </p>
-              <p>
-                A real-time vehicle tracking application that displays fleet
-                information and provides statistical movement data.
-              </p>
-              <span className="project-link">Not Public</span>
             </div>
           </article>
         </div>
@@ -499,8 +481,7 @@ export default async function Home() {
         <div className="testimonials-head">
           <p className="section-label">Client voices</p>
           <h2 id="testimonials-title">
-            What teams say after we{" "}
-            <span className="gradient-text">ship.</span>
+            What teams say after we <span className="gradient-text">ship.</span>
           </h2>
           <p className="lede-black">
             Short notes from product and operations partners after the software
@@ -520,172 +501,65 @@ export default async function Home() {
 
       <section
         id="about"
-        className="section about"
+        className="section about about--home"
         aria-labelledby="about-title"
       >
         <div className="about-copy">
           <p className="section-label">About WonderIT</p>
           <h2 id="about-title">
-            A full-stack software team for products that{" "}
+            A compact studio for products that{" "}
             <span className="gradient-text">need to last.</span>
           </h2>
           <p className="lede-black">
-            WonderIT builds scalable web applications, mobile apps, SaaS
-            platforms, automation systems, and AI-enhanced digital products for
-            startups, businesses, and enterprises worldwide.
+            Engineers, design, QA, and growth — the same people from first
+            sketch to production. We care about performance, usability, and
+            software that still feels good a year later.
           </p>
-          <p className="lede-black">
-            The team combines engineering precision with product thinking,
-            focusing on performance, usability, and long-term growth instead of
-            short-lived prototypes.
-          </p>
-          <div className="about-media">
-            <img
-              src="/our-team-wonderit.png"
-              alt="WonderIT software development team collaboration"
-              loading="lazy"
-            />
+          <div className="actions">
+            <a className="button primary" href="/about">
+              Meet the team
+            </a>
           </div>
         </div>
-
-        <div>
-          <article className="about-panel">
-            <h3>Building Reliable Digital Products That Scale</h3>
-            <p>
-              Since launching wonderIT, the team has worked on sports analytics
-              platforms, mobile applications, SaaS products, real-time tracking
-              systems, internal business tools, and automation platforms.
-            </p>
-            <p>
-              Every project is approached with collaboration, transparency,
-              technical precision, and a focus on real business value.
-            </p>
-          </article>
-
-          <article className="about-panel">
-            <h3>Mission & Vision</h3>
-            <p>
-              The mission is to help businesses build modern digital products
-              that are scalable, reliable, and designed for real-world users.
-            </p>
-            <p>
-              The vision is a future where companies use software, automation,
-              and AI-enhanced systems to operate more efficiently and deliver
-              better user experiences.
-            </p>
-          </article>
-
-          <article className="about-panel">
-            <h3>What We Build</h3>
-            <div className="build-grid">
-              <div className="mini-card">
-                <h3>SaaS Platforms</h3>
-                <p>
-                  Subscription products, dashboards, cloud apps, and multi-user
-                  systems.
-                </p>
-              </div>
-              <div className="mini-card">
-                <h3>Mobile Applications</h3>
-                <p>
-                  Cross-platform iOS and Android apps built with React Native.
-                </p>
-              </div>
-              <div className="mini-card">
-                <h3>Real-Time Systems</h3>
-                <p>
-                  Live dashboards, tracking systems, WebSocket apps, and
-                  analytics.
-                </p>
-              </div>
-              <div className="mini-card">
-                <h3>AI & Automation</h3>
-                <p>
-                  LLM workflows, Google Workspace tools, reporting, and business
-                  automation.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <article className="about-panel">
-            <h3>Core Values</h3>
-            <div className="value-grid">
-              <div className="mini-card">
-                <h3>Client Partnership</h3>
-                <p>Close collaboration around real business problems.</p>
-              </div>
-              <div className="mini-card">
-                <h3>Engineering Excellence</h3>
-                <p>
-                  Scalable architecture, clean code, and maintainable systems.
-                </p>
-              </div>
-              <div className="mini-card">
-                <h3>Modern Technologies</h3>
-                <p>
-                  Modern frameworks, cloud platforms, real-time systems, and AI
-                  workflows.
-                </p>
-              </div>
-              <div className="mini-card">
-                <h3>Reliable Delivery</h3>
-                <p>
-                  Consistent execution with attention to quality and detail.
-                </p>
-              </div>
-            </div>
-          </article>
+        <div className="about-media">
+          <img
+            src="/our-team-wonderit.png"
+            alt="WonderIT software development team collaboration"
+            loading="lazy"
+          />
         </div>
       </section>
 
       <section className="section team-section" aria-labelledby="team-title">
         <div className="team-head">
-          <p className="section-label">Meet Our Team</p>
+          <p className="section-label">Meet the team</p>
           <h2 id="team-title">
-            The engineers and creators behind{" "}
-            <span className="gradient-text">WonderIT.</span>
+            The people behind <span className="gradient-text">WonderIT.</span>
           </h2>
           <p className="lede-black">
-            A focused full-stack team building modern software products for
-            businesses worldwide.
+            A compact studio of engineers, design, QA, and growth — the same
+            faces from kickoff through launch.
           </p>
         </div>
-        <div className="team-grid">
-          {TEAM.map((member) => (
-            <article key={member.name} className="team-card">
-              <div className="team-photo">
-                <img
-                  src={member.image}
-                  alt={member.alt}
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <h3>{member.name}</h3>
-                <p>{member.title}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <TeamGrid />
       </section>
 
       <section id="contact" className="cta" aria-labelledby="cta-title">
         <h2 id="cta-title">
-          Bring the idea, the spreadsheet, the workflow, or the mess. <span className="gradient-text">WonderIT </span>
-          can turn it into software.
+          Bring the idea, the spreadsheet, or the workflow. We&apos;ll turn it
+          into software you actually like using.
         </h2>
         <div className="actions">
+          <a className="button" href="/contact">
+            Start a conversation
+          </a>
           <a
-            className="button"
+            className="button secondary"
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
             Book a call
-          </a>
-          <a className="button secondary" href="/contact">
-            Contact WonderIT
           </a>
         </div>
       </section>

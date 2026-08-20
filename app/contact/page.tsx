@@ -80,8 +80,12 @@ export default function ContactPage() {
     <main>
       <PageIntro
         label="Contact"
-        title="Let's connect."
+        title="Start a conversation"
         description="Ready to start your next project? Get in touch and we'll help turn it into production software."
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Contact" },
+        ]}
       />
 
       <section className="section split">

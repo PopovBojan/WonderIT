@@ -7,19 +7,14 @@ import HeaderLogo from "./HeaderLogo";
 
 const NAV_LINKS = [
   {
-    href: "/",
-    label: "Home",
-    description: "Overview and services",
+    href: "/services",
+    label: "Services",
+    description: "Web, mobile, SaaS and AI",
   },
   {
     href: "/work",
     label: "Work",
     description: "Projects and case studies",
-  },
-  {
-    href: "/services",
-    label: "Services",
-    description: "Web, mobile, SaaS and AI",
   },
   {
     href: "/industries",
@@ -33,7 +28,7 @@ const NAV_LINKS = [
   },
   {
     href: "/blog",
-    label: "Blog",
+    label: "Insights",
     description: "Insights and updates",
   },
 ];
@@ -147,7 +142,7 @@ export default function NavLinks() {
           href="/contact"
           aria-current={pathname === "/contact" ? "page" : undefined}
         >
-          Contact
+          Contact us
         </Link>
       </nav>
 

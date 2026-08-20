@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { getPostBySlug } from "@/lib/wp-graphql";
 import { notFound } from "next/navigation";
+import PageIntro from "../../components/PageIntro";
 
 export const dynamic = "force-dynamic";
 
@@ -138,71 +138,54 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <main className="blog-page blog-post-page subpage-padding min-h-screen">
+    <main className="blog-page blog-post-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <div className="container">
-        {/* Navigation */}
-        <Link href="/blog" className="inline-flex items-center gap-2 font-bold uppercase tracking-wider text-accent-primary mb-12 hover:translate-x-[-5px] transition-transform" style={{ fontSize: '12px' }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="relative" style={{ top: '0.5px' }}>
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span className="relative" style={{ top: '-1px' }}>Back to Blog</span>
-        </Link>
+      <PageIntro
+        label="Insights"
+        title={post.title}
+        description={`By ${author} · ${new Intl.DateTimeFormat("en", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(new Date(post.date))}`}
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { href: "/blog", label: "Insights" },
+          { label: "Article" },
+        ]}
+      />
 
-        {/* Post Header */}
-        <header className="mb-16 max-w-4xl">
-          <div className="flex gap-4 mb-6">
-            
-          </div>
-          <h1 className="text-4xl mb-6 md:text-6xl mb-8 leading-tight">
-            {post.title}
-          </h1>
-          <p className="text-m text-text-secondary">
-            By {author} · {new Intl.DateTimeFormat("en", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }).format(new Date(post.date))}
-          </p>
-        </header>
-
-        {/* Featured Image */}
-        {post.featuredImage && (
-          <div className="relative w-full h-[400px] md:h-[600px] mb-16 rounded-3xl overflow-hidden">
-            <Image
-              src={post.featuredImage.node.sourceUrl}
-              alt={post.featuredImage.node.altText || post.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 768px"
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Content */}
-        <div className="max-w-3xl mx-auto">
-          <div 
-            className="prose prose-lg max-w-none blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content || "" }}
+      {post.featuredImage ? (
+        <div className="blog-article__media">
+          <Image
+            src={post.featuredImage.node.sourceUrl}
+            alt={post.featuredImage.node.altText || post.title}
+            width={1200}
+            height={630}
+            sizes="(max-width: 768px) 100vw, 1180px"
+            priority
           />
         </div>
+      ) : null}
 
-        {/* Footer CTA */}
-        <footer className="mt-24 py-16 border-t border-black/5 text-center">
-          <h3 className="text-3xl mb-6">Have a project in mind?</h3>
-          <p className="text-text-secondary mb-10 text-lg">Let&apos;s build something amazing together.</p>
-          <Link href="/contact" className="btn btn-primary">
-            Get in Touch
-          </Link>
-        </footer>
-      </div>
+      <article className="blog-article">
+        <div
+          className="blog-content"
+          dangerouslySetInnerHTML={{ __html: post.content || "" }}
+        />
+        <div className="blog-article__cta">
+          <h2>Have a project in mind?</h2>
+          <p className="lede">Let&apos;s turn it into production software.</p>
+          <a className="button primary" href="/contact">
+            Start a conversation
+          </a>
+        </div>
+      </article>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   COMPANY_LOGOS,
   shuffleLogos,
@@ -16,26 +16,85 @@ function isSvgLogo(url: string) {
   }
 }
 
+function detectLightLogo(img: HTMLImageElement): boolean | null {
+  try {
+    const canvas = document.createElement("canvas");
+    const size = 48;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0, size, size);
+    const { data } = ctx.getImageData(0, 0, size, size);
+    let light = 0;
+    let dark = 0;
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 40) continue;
+      const luma =
+        (data[i] * 299 + data[i + 1] * 587 + data[i + 2] * 114) / 1000;
+      if (luma >= 208) light += 1;
+      else if (luma <= 90) dark += 1;
+    }
+    if (light + dark < 10) return null;
+    return light > dark * 1.25;
+  } catch {
+    return null;
+  }
+}
+
 function LogoItem({ logo }: { logo: CompanyLogo }) {
   const [failed, setFailed] = useState(false);
+  const [onDark, setOnDark] = useState(Boolean(logo.onDark));
   if (!logo.logoUrl || failed) return null;
 
   const svg = isSvgLogo(logo.logoUrl);
 
   return (
-    <div className="logo-marquee__brand">
-      <div className="logo-marquee__media">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={logo.logoUrl}
-          alt={`${logo.name} logo`}
-          className={`logo-marquee__img${svg ? " logo-marquee__img--svg" : ""}`}
-          loading="lazy"
-          decoding="async"
-          draggable={false}
-          referrerPolicy="no-referrer"
-          onError={() => setFailed(true)}
-        />
+    <div className={`logo-marquee__item${onDark ? " is-light" : ""}`}>
+      <div className="logo-marquee__brand">
+        <div className="logo-marquee__media">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logo.logoUrl}
+            alt={`${logo.name} logo`}
+            className={`logo-marquee__img${svg ? " logo-marquee__img--svg" : ""}`}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            referrerPolicy="no-referrer"
+            onLoad={(event) => {
+              if (onDark || svg) return;
+              const light = detectLightLogo(event.currentTarget);
+              if (light) setOnDark(true);
+            }}
+            onError={() => setFailed(true)}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MarqueeRow({
+  logos,
+  reverse = false,
+  duration,
+}: {
+  logos: CompanyLogo[];
+  reverse?: boolean;
+  duration: number;
+}) {
+  const track = useMemo(() => [...logos, ...logos, ...logos], [logos]);
+
+  return (
+    <div className={`logo-marquee__viewport${reverse ? " is-reverse" : ""}`}>
+      <div
+        className="logo-marquee__track is-ready"
+        style={{ animationDuration: `${duration}s` }}
+      >
+        {track.map((logo, index) => (
+          <LogoItem key={`${logo.id}-${index}`} logo={logo} />
+        ))}
       </div>
     </div>
   );
@@ -56,154 +115,37 @@ export default function LogoMarquee({
     [logosProp],
   );
 
-  // Keep first paint identical on server + client; shuffle only after mount.
   const [logos, setLogos] = useState<CompanyLogo[]>(sourceLogos);
-  const [ready, setReady] = useState(false);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const offsetRef = useRef(0);
-  const halfWidthRef = useRef(0);
-  const draggingRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const dragStartOffsetRef = useRef(0);
-  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       setLogos(shuffleLogos(sourceLogos));
-      setReady(true);
     });
     return () => window.cancelAnimationFrame(frame);
   }, [sourceLogos]);
 
-  useEffect(() => {
-    const viewport = viewportRef.current;
-    const track = trackRef.current;
-    if (!viewport || !track) return;
-
-    const measure = () => {
-      halfWidthRef.current = track.scrollWidth / 2;
-    };
-
-    const setPaused = (paused: boolean) => {
-      track.classList.toggle("is-paused", paused);
-    };
-
-    const applyManual = () => {
-      const half = halfWidthRef.current;
-      if (half > 0) {
-        offsetRef.current = ((offsetRef.current % half) + half) % half;
-      }
-      track.classList.add("is-manual");
-      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
-    };
-
-    const resumeAuto = () => {
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-      resumeTimerRef.current = setTimeout(() => {
-        track.classList.remove("is-manual");
-        track.style.removeProperty("transform");
-        setPaused(false);
-      }, 1200);
-    };
-
-    measure();
-
-    const ro = new ResizeObserver(measure);
-    ro.observe(track);
-
-    const onWheel = (event: WheelEvent) => {
-      const delta =
-        Math.abs(event.deltaY) > Math.abs(event.deltaX)
-          ? event.deltaY
-          : event.deltaX;
-      if (!delta) return;
-      event.preventDefault();
-      measure();
-      if (!track.classList.contains("is-manual")) {
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrixReadOnly(style.transform);
-        offsetRef.current = -matrix.m41;
-      }
-      offsetRef.current += delta;
-      applyManual();
-      setPaused(true);
-      resumeAuto();
-    };
-
-    const onPointerDown = (event: PointerEvent) => {
-      if (event.button !== 0) return;
-      measure();
-      if (!track.classList.contains("is-manual")) {
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrixReadOnly(style.transform);
-        offsetRef.current = -matrix.m41;
-      }
-      draggingRef.current = true;
-      dragStartXRef.current = event.clientX;
-      dragStartOffsetRef.current = offsetRef.current;
-      viewport.classList.add("is-dragging");
-      setPaused(true);
-      track.classList.add("is-manual");
-      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
-      viewport.setPointerCapture(event.pointerId);
-    };
-
-    const onPointerMove = (event: PointerEvent) => {
-      if (!draggingRef.current) return;
-      const delta = event.clientX - dragStartXRef.current;
-      offsetRef.current = dragStartOffsetRef.current - delta;
-      applyManual();
-    };
-
-    const onPointerUp = (event: PointerEvent) => {
-      if (!draggingRef.current) return;
-      draggingRef.current = false;
-      viewport.classList.remove("is-dragging");
-      try {
-        viewport.releasePointerCapture(event.pointerId);
-      } catch {
-        // ignore
-      }
-      resumeAuto();
-    };
-
-    viewport.addEventListener("wheel", onWheel, { passive: false });
-    viewport.addEventListener("pointerdown", onPointerDown);
-    viewport.addEventListener("pointermove", onPointerMove);
-    viewport.addEventListener("pointerup", onPointerUp);
-    viewport.addEventListener("pointercancel", onPointerUp);
-
-    return () => {
-      ro.disconnect();
-      viewport.removeEventListener("wheel", onWheel);
-      viewport.removeEventListener("pointerdown", onPointerDown);
-      viewport.removeEventListener("pointermove", onPointerMove);
-      viewport.removeEventListener("pointerup", onPointerUp);
-      viewport.removeEventListener("pointercancel", onPointerUp);
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    };
-  }, [logos]);
-
-  const track = useMemo(() => [...logos, ...logos], [logos]);
-  const durationSec = Math.max(28, logos.length * 2.2);
-
   if (!logos.length) return null;
 
+  const mid = Math.ceil(logos.length / 2);
+  const rowA = logos.slice(0, Math.max(mid, 3));
+  const rowB = logos.length > 4 ? logos.slice(mid) : [...logos].reverse();
+
   return (
-    <section className="section logo-marquee" aria-label="Client logos">
-      <div ref={viewportRef} className="logo-marquee__viewport">
-        <div
-          ref={trackRef}
-          className={`logo-marquee__track${ready ? " is-ready" : ""}`}
-          style={{ animationDuration: `${durationSec}s` }}
-        >
-          {track.map((logo, index) => (
-            <div key={`${logo.id}-${index}`} className="logo-marquee__item">
-              <LogoItem logo={logo} />
-            </div>
-          ))}
-        </div>
+    <section
+      className="logo-marquee"
+      aria-label="Companies WonderIT has worked with"
+    >
+      {/* <div className="section logo-marquee__intro">
+        <p className="section-label">Partners</p>
+      </div> */}
+
+      <div className="logo-marquee__stage">
+        <MarqueeRow logos={rowA} duration={Math.max(28, rowA.length * 5)} />
+        <MarqueeRow
+          logos={rowB.length ? rowB : rowA}
+          reverse
+          duration={Math.max(34, (rowB.length || rowA.length) * 5.6)}
+        />
       </div>
     </section>
   );

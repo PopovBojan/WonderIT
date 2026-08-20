@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageIntro from "../components/PageIntro";
+import PageCta from "../components/PageCta";
 import { INDUSTRIES } from "@/lib/site-content";
 
 export const metadata: Metadata = {
@@ -22,8 +23,12 @@ export default function IndustriesPage() {
     <main>
       <PageIntro
         label="Industries"
-        title="Where the work gets specific."
+        title="Industries"
         description="Sports tech, SaaS, logistics, analytics, and AI automation all need different product instincts. WonderIT builds domain-aware software without turning every page into a wall of text."
+        crumbs={[
+          { href: "/", label: "WonderIT" },
+          { label: "Industries" },
+        ]}
       />
 
       <section className="section industries">
@@ -37,6 +42,8 @@ export default function IndustriesPage() {
           ))}
         </div>
       </section>
+
+      <PageCta title="Building in sports, SaaS, logistics, or automation? Let's make the software specific." />
     </main>
   );
 }
