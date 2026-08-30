@@ -17,7 +17,8 @@ function FeaturedCard({ project }: { project: Project }) {
   const showVisit = Boolean(href) && slug !== "next11";
 
   return (
-    <article className="work-featured" aria-labelledby={titleId}>
+    <div className="work-featured-wrap">
+      <article className="work-featured" aria-labelledby={titleId}>
       <div
         className={`work-featured__media${slug === "servicebriefai" ? " is-shot" : ""}`}
       >
@@ -55,8 +56,14 @@ function FeaturedCard({ project }: { project: Project }) {
             </a>
           ) : null}
         </div>
-      </div>
-    </article>
+        </div>
+      </article>
+      {project.content ? (
+        <span className="work-tip" aria-hidden="true">
+          {project.content}
+        </span>
+      ) : null}
+    </div>
   );
 }
 

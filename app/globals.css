@@ -2853,6 +2853,12 @@ body:has(.work-page) .site-header {
   z-index: 1;
 }
 
+.work-featured-row:hover,
+.work-studio:has(.work-card-wrap:hover),
+.work-studio:has(.work-card-wrap:focus-within) {
+  z-index: 30;
+}
+
 .work-page .work-hero {
   position: relative;
   isolation: isolate;
@@ -2987,9 +2993,17 @@ body:has(.work-page) .site-header {
   gap: 14px;
 }
 
+.work-featured-wrap {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+}
+
 .work-featured {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  width: 100%;
   min-height: 0;
   overflow: hidden;
   border-radius: 24px;
@@ -3325,8 +3339,23 @@ body:has(.work-page) .site-header {
   gap: 12px;
 }
 
-.work-card {
+.work-card-wrap {
+  position: relative;
   grid-column: span 3;
+  min-height: 100%;
+  display: flex;
+}
+
+.work-card-wrap:hover,
+.work-card-wrap:focus-within,
+.work-featured-wrap:hover,
+.work-featured-wrap:focus-within {
+  z-index: 40;
+}
+
+.work-card {
+  flex: 1;
+  width: 100%;
   min-height: 100%;
   border: 1px solid rgba(21, 21, 32, 0.08);
   border-radius: 18px;
@@ -3492,6 +3521,58 @@ body:has(.work-page) .site-header {
   transition: transform 180ms ease;
 }
 
+.work-tip {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: calc(100% + 8px);
+  z-index: 50;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #151520;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    visibility 160ms ease;
+  box-shadow: 0 16px 36px rgba(35, 50, 95, 0.22);
+  max-height: min(240px, 42vh);
+  overflow: auto;
+}
+
+.work-tip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  border: 6px solid transparent;
+  border-top: 0;
+  border-bottom-color: #151520;
+}
+
+.work-card-wrap:hover .work-tip,
+.work-card-wrap:focus-within .work-tip,
+.work-featured-wrap:hover .work-tip,
+.work-featured-wrap:focus-within .work-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-tip {
+    transition: none;
+    transform: none;
+  }
+}
+
 .work-card:hover .work-card__cta i,
 .work-card:focus-visible .work-card__cta i {
   transform: translateX(4px);
@@ -3516,7 +3597,7 @@ body:has(.work-page) .site-header {
 }
 
 @media (max-width: 1100px) {
-  .work-card {
+  .work-card-wrap {
     grid-column: span 4;
   }
 }
@@ -3532,7 +3613,7 @@ body:has(.work-page) .site-header {
     gap: 12px;
   }
 
-  .work-card {
+  .work-card-wrap {
     grid-column: span 6;
   }
 }
@@ -3579,7 +3660,7 @@ body:has(.work-page) .site-header {
     border-radius: 16px;
   }
 
-  .work-card {
+  .work-card-wrap {
     grid-column: span 6;
   }
 

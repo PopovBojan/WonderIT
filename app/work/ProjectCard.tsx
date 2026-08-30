@@ -55,10 +55,11 @@ export default function ProjectCard({
   const number = String(index + 1).padStart(2, "0");
 
   return (
-    <CardShell
-      href={href}
-      className={`work-card${cover ? " is-cover" : ""}${light && !cover ? " is-light" : ""}`}
-    >
+    <div className="work-card-wrap">
+      <CardShell
+        href={href}
+        className={`work-card${cover ? " is-cover" : ""}${light && !cover ? " is-light" : ""}`}
+      >
       <div className="work-card__media">
         <span className="work-card__index" aria-hidden="true">
           {number}
@@ -100,6 +101,12 @@ export default function ProjectCard({
           )}
         </span>
       </div>
-    </CardShell>
+      </CardShell>
+      {project.content ? (
+        <span className="work-tip" aria-hidden="true">
+          {project.content}
+        </span>
+      ) : null}
+    </div>
   );
 }
