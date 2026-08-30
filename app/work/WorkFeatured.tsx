@@ -18,7 +18,9 @@ function FeaturedCard({ project }: { project: Project }) {
 
   return (
     <article className="work-featured" aria-labelledby={titleId}>
-      <div className="work-featured__media">
+      <div
+        className={`work-featured__media${slug === "servicebriefai" ? " is-shot" : ""}`}
+      >
         {image ? (
           <img src={image} alt={displayName(project.name)} />
         ) : (
@@ -33,24 +35,26 @@ function FeaturedCard({ project }: { project: Project }) {
         <p className="work-featured__cat">{categoryLabel(project.category)}</p>
         <h2 id={titleId}>{displayName(project.name)}</h2>
         <p className="work-featured__copy">{project.content}</p>
-        {tags.length ? (
-          <ul className="work-tags">
-            {tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-        ) : null}
-        {showVisit ? (
-          <a
-            className="button primary"
-            href={href ?? undefined}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit project
-            <span aria-hidden="true">→</span>
-          </a>
-        ) : null}
+        <div className="work-featured__foot">
+          {tags.length ? (
+            <ul className="work-tags">
+              {tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          ) : null}
+          {showVisit ? (
+            <a
+              className="button primary"
+              href={href ?? undefined}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit project
+              <span aria-hidden="true">→</span>
+            </a>
+          ) : null}
+        </div>
       </div>
     </article>
   );

@@ -7,8 +7,8 @@ export const CATEGORY_LABELS: Record<string, string> = {
   "google-web": "Workspace",
 };
 
-const COVER_SLUGS = new Set(["next11", "bettercoaching"]);
-export const FEATURED_SLUGS = ["next11", "bettercoaching"] as const;
+const COVER_SLUGS = new Set(["next11", "bettercoaching", "servicebriefai"]);
+export const FEATURED_SLUGS = ["bettercoaching", "servicebriefai"] as const;
 
 export function projectSlug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]/g, "");
