@@ -98,11 +98,11 @@ export default async function WorkPage() {
     content: node.projectFields?.projectDescription || "",
   }));
 
-  const projects = mergeProjects(mappedWpProjects)
+  const projects: Project[] = mergeProjects(mappedWpProjects)
     .filter((project) => Boolean(project.name))
     .map((project) => ({
       ...project,
-      featured: project.featured || isFeaturedProject(project.name),
+      featured: Boolean(project.featured || isFeaturedProject(project.name)),
     }));
 
   const featured = FEATURED_SLUGS.map((slug) =>
