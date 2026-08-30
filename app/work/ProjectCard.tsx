@@ -1,55 +1,105 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState } from "react";
-import type { Project } from "../../lib/site-content";
-import { detectLightLogo, logoLooksLight } from "../../lib/detect-light-logo";
+import type { Project } from "@/lib/site-content";
+import { detectLightLogo, logoLooksLight } from "@/lib/detect-light-logo";
+import {
+  categoryLabel,
+  displayName,
+  projectImageUrl,
+  publicLink,
+  stackTags,
+  usesCoverImage,
+} from "./work-utils";
 
-export default function ProjectCard({ project }: { project: Project }) {
-  const category = project.category.replace(/-/g, " ");
-  const publicLink =
-    project.link !== "Not Public" ? project.link.split(",")[0] : null;
+function CardShell({
+  href,
+  className,
+  children,
+}: {
+  href: string | null;
+  className: string;
+  children: ReactNode;
+}) {
+  if (href) {
+    return (
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return <article className={className}>{children}</article>;
+}
+
+export default function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const href = publicLink(project);
+  const image = projectImageUrl(project.image, 720);
+  const cover = usesCoverImage(project);
+          const tags = stackTags(project.stack, 3);
   const [light, setLight] = useState(
     logoLooksLight(project.name, project.image),
   );
+  const number = String(index + 1).padStart(2, "0");
 
   return (
-    <article className="project-card">
-      <div
-        className={`project-media project-media--logo${light ? " is-light" : ""}`}
-      >
-        {project.image ? (
+    <CardShell
+      href={href}
+      className={`work-card${cover ? " is-cover" : ""}${light && !cover ? " is-light" : ""}`}
+    >
+      <div className="work-card__media">
+        <span className="work-card__index" aria-hidden="true">
+          {number}
+        </span>
+        {image ? (
           <img
-            src={project.image}
-            alt={project.name}
+            src={image}
+            alt=""
+            loading="lazy"
             onLoad={(event) => {
-              if (light) return;
+              if (cover || light) return;
               if (detectLightLogo(event.currentTarget)) setLight(true);
             }}
           />
         ) : (
-          <div className="project-placeholder">
-            <span>{project.placeholder || project.name}</span>
+          <div className="work-card__placeholder">
+            <span>{project.placeholder || project.name.slice(0, 18)}</span>
           </div>
         )}
       </div>
-      <div className="project-body">
-        <span className="project-kicker">{category}</span>
-        <h3>{project.name}</h3>
-        {project.stack ? <p className="project-stack">{project.stack}</p> : null}
+      <div className="work-card__body">
+        <span className="work-card__cat">{categoryLabel(project.category)}</span>
+        <h3>{displayName(project.name)}</h3>
         <p>{project.content}</p>
-        {publicLink ? (
-          <a
-            className="project-link"
-            href={publicLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Project
-          </a>
-        ) : (
-          <span className="project-link">Not Public</span>
-        )}
+        {tags.length ? (
+          <ul className="work-tags work-tags--compact">
+            {tags.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
+          </ul>
+        ) : null}
+        <span className={href ? "work-card__cta" : "work-card__private"}>
+          {href ? (
+            <>
+              View project <i aria-hidden="true">→</i>
+            </>
+          ) : (
+            "Not public"
+          )}
+        </span>
       </div>
-    </article>
+    </CardShell>
   );
 }

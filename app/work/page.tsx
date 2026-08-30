@@ -1,9 +1,12 @@
-import ProjectCarousel from './ProjectCarousel';
 import type { Metadata } from "next";
-import PageIntro from "../components/PageIntro";
 import PageCta from "../components/PageCta";
 import { getProjects } from "@/lib/wp-graphql";
 import { mergeProjects, type Project } from "@/lib/site-content";
+import WorkHero from "./WorkHero";
+import WorkFeatured from "./WorkFeatured";
+import WorkGallery from "./WorkGallery";
+import WorkCanvas from "./WorkCanvas";
+import { FEATURED_SLUGS, isFeaturedProject, projectSlug, uniqueTechCount } from "./work-utils";
 
 export const dynamic = "force-dynamic";
 
@@ -37,8 +40,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title:
-      "Our Work | Web Apps, Mobile Apps & SaaS Projects | wonderIT",
+    title: "Our Work | Web Apps, Mobile Apps & SaaS Projects | wonderIT",
 
     description:
       "Real-world software projects built with React, Next.js, React Native, Node.js, Firebase, MongoDB, and AI technologies.",
@@ -100,12 +102,21 @@ export default async function WorkPage() {
     .filter((project) => Boolean(project.name))
     .map((project) => ({
       ...project,
-      featured:
-        project.featured || project.name.toLowerCase() === "next11",
+      featured: project.featured || isFeaturedProject(project.name),
     }));
+
+  const featured = FEATURED_SLUGS.map((slug) =>
+    projects.find((project) => projectSlug(project.name) === slug),
+  ).filter((project): project is Project => Boolean(project));
+  const featuredNames = new Set(featured.map((project) => projectSlug(project.name)));
+  const gallery = projects.filter(
+    (project) => !featuredNames.has(projectSlug(project.name)),
+  );
+  const categories = new Set(projects.map((project) => project.category));
 
   return (
     <main className="work-page">
+      <WorkCanvas />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -135,9 +146,7 @@ export default async function WorkPage() {
                     : "Web Browser",
                 description: project.content,
                 url:
-                  project.link !== "Not Public"
-                    ? project.link
-                    : undefined,
+                  project.link !== "Not Public" ? project.link : undefined,
                 image: project.image || undefined,
                 creator: {
                   "@type": "Organization",
@@ -152,19 +161,16 @@ export default async function WorkPage() {
           }),
         }}
       />
-      <PageIntro
-        label="Work"
-        title="Software shipped for real operators."
-        description="Explore custom software, mobile apps, SaaS, and AI-enhanced products built with React, Next.js, React Native, Node.js, and cloud technologies."
-        crumbs={[
-          { href: "/", label: "WonderIT" },
-          { label: "Work" },
-        ]}
+
+      <WorkHero
+        projectCount={projects.length}
+        categoryCount={categories.size}
+        techCount={uniqueTechCount(projects)}
       />
 
-      <section className="section portfolio">
-        <ProjectCarousel projects={projects} />
-      </section>
+      {featured.length ? <WorkFeatured projects={featured} /> : null}
+
+      <WorkGallery projects={gallery} />
 
       <PageCta title="Like the work? Let's talk about the product you want to ship next." />
     </main>
