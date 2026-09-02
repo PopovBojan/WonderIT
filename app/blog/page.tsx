@@ -1,8 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
 import { getAllPosts, type BlogPost } from "@/lib/wp-graphql";
-import PageIntro from "../components/PageIntro";
 import PageCta from "../components/PageCta";
+import InsightsCanvas from "./InsightsCanvas";
+import InsightsFeed from "./InsightsFeed";
+import InsightsHero from "./InsightsHero";
+import { toInsightCard, uniqueTopics } from "./insights-utils";
 
 export const dynamic = "force-dynamic";
 
@@ -30,8 +31,7 @@ export const metadata = {
   ],
 
   openGraph: {
-    title:
-      "WonderIT Blog - Software Engineering, AI & Product Innovation",
+    title: "WonderIT Blog - Software Engineering, AI & Product Innovation",
 
     description:
       "Insights on AI integrations, modern software development, scalable systems, SaaS products, automation, and digital transformation from the WonderIT team.",
@@ -54,8 +54,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title:
-      "WonderIT Blog - Software Engineering, AI & Product Innovation",
+    title: "WonderIT Blog - Software Engineering, AI & Product Innovation",
 
     description:
       "Thoughts, insights, and practical knowledge on AI, software engineering, SaaS platforms, and modern digital products.",
@@ -76,63 +75,47 @@ export default async function BlogPage() {
     posts = [];
   }
 
+  const notes = posts.map(toInsightCard);
+  const topics = uniqueTopics(notes);
+  const latestYear = notes[0]
+    ? new Intl.DateTimeFormat("en", { year: "numeric" }).format(
+        new Date(notes[0].date),
+      )
+    : String(new Date().getFullYear());
+
   return (
-    <main className="blog-page">
-      <PageIntro
-        label="Insights"
-        title="Insights"
-        description="Practical notes on modern software engineering, AI-powered applications, scalable architecture, automation, and digital product strategy."
-        crumbs={[
-          { href: "/", label: "WonderIT" },
-          { label: "Insights" },
-        ]}
+    <main className="insights-page">
+      <InsightsCanvas />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "WonderIT Insights",
+            url: "https://wonderit.io/blog",
+            description:
+              "Practical notes on software engineering, AI-powered products, and digital product strategy.",
+            blogPost: notes.map((note) => ({
+              "@type": "BlogPosting",
+              headline: note.title,
+              url: `https://wonderit.io/blog/${note.slug}`,
+              datePublished: note.date,
+              author: { "@type": "Person", name: note.author },
+            })),
+          }).replace(/</g, "\\u003c"),
+        }}
       />
 
-      <section className="section portfolio">
-        {posts.length > 0 ? (
-          <div className="project-grid">
-            {posts.map((post) => (
-              <article key={post.id} className="project-card">
-                <div className="project-media project-media--cover">
-                  {post.featuredImage ? (
-                    <Image
-                      src={post.featuredImage.node.sourceUrl}
-                      alt={post.featuredImage.node.altText || post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="project-placeholder">
-                      <span>WonderIT</span>
-                    </div>
-                  )}
-                </div>
-                <div className="project-body">
-                  <h3>{post.title}</h3>
-                  <div
-                    className="post-excerpt"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt || "" }}
-                  />
-                  <Link href={`/blog/${post.slug}`} className="project-link">
-                    Read Article
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <article className="about-panel">
-            <h3>No posts found</h3>
-            <p>
-              We&apos;re currently preparing some amazing content for you. Stay
-              tuned!
-            </p>
-          </article>
-        )}
-      </section>
+      <InsightsHero
+        postCount={notes.length}
+        topicCount={topics.length || 1}
+        latestYear={latestYear}
+      />
 
-      <PageCta title="Have a product question that isn't on the blog? Ask the team directly." />
+      <InsightsFeed posts={notes} />
+
+      <PageCta title="Have a product question that isn't in these notes? Ask the team directly." />
     </main>
   );
 }
