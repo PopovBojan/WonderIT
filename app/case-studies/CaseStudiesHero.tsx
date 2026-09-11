@@ -15,9 +15,9 @@ export default function CaseStudiesHero() {
           How we ship software that operators can trust.
         </h1>
         <p className="lede">
-          Longer looks at products we built for coaches, clubs, and field teams —
-          real-time systems, mobile craft, and domain UX that has to work in the
-          field.
+          Longer looks at products we built for coaches, clubs, field teams,
+          and law firms — real-time systems, WordPress products, and domain UX
+          that has to work in the field.
         </p>
       </div>
     </section>

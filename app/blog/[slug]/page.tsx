@@ -1,9 +1,10 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { cache } from "react";
 import { getPostBySlug } from "@/lib/wp-graphql";
 import { notFound } from "next/navigation";
-import PageIntro from "../../components/PageIntro";
+import InsightsCanvas from "../InsightsCanvas";
 
 export const dynamic = "force-dynamic";
 
@@ -93,7 +94,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const description =
     metaDescription(post.excerpt || post.content) ||
     "Software engineering and digital product insights from the WonderIT team.";
-  const author = post.author?.node?.name || "WonderIT";
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         image:
           post.featuredImage?.node.sourceUrl ||
           "https://wonderit.io/opengraph-image",
-        author: { "@type": "Person", name: author },
+        author: { "@type": "Organization", name: "WonderIT" },
         publisher: { "@id": "https://wonderit.io/#organization" },
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
       },
@@ -138,27 +138,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   };
 
   return (
-    <main className="blog-page blog-post-page">
+    <main className="insights-page blog-page blog-post-page">
+      <InsightsCanvas wordmark="INSIGHT" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <PageIntro
-        label="Insights"
-        title={post.title}
-        description={`By ${author} · ${new Intl.DateTimeFormat("en", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }).format(new Date(post.date))}`}
-        crumbs={[
-          { href: "/", label: "WonderIT" },
-          { href: "/blog", label: "Insights" },
-          { label: "Article" },
-        ]}
-      />
+      <section className="insights-hero" aria-labelledby="insight-title">
+        <div className="insights-hero__inner">
+          <nav className="work-crumb" aria-label="Breadcrumb">
+            <Link href="/">WonderIT</Link>
+            <span aria-hidden="true">›</span>
+            <Link href="/blog">Insights</Link>
+            <span aria-hidden="true">›</span>
+            <span>Article</span>
+          </nav>
+          <p className="eyebrow">Insight</p>
+          <h1 id="insight-title">{post.title}</h1>
+        </div>
+      </section>
 
       {post.featuredImage ? (
         <div className="blog-article__media">

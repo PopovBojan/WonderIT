@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CaseStudy } from "@/lib/case-studies";
 import { stackTags } from "@/lib/case-studies";
+import CaseStudyInsights from "./CaseStudyInsights";
 
 const APPROACH_TONES = ["violet", "aqua", "coral", "green"] as const;
 
@@ -92,6 +93,11 @@ export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
             <h2 id="overview-title">What we were asked to build.</h2>
           </div>
           <RichText value={study.overview} className="case-study-prose case-study-prose--full" />
+          {study.callout ? (
+            <aside className="case-callout">
+              <p>{study.callout}</p>
+            </aside>
+          ) : null}
         </section>
       ) : null}
 
@@ -328,6 +334,8 @@ export default function CaseStudyTemplate({ study }: { study: CaseStudy }) {
           <RichText value={study.whyItMatters} className="case-study-prose" />
         </section>
       ) : null}
+
+      <CaseStudyInsights study={study} />
     </>
   );
 }

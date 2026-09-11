@@ -1,7 +1,16 @@
-export default function InsightsCanvas() {
+export default function InsightsCanvas({
+  wordmark = "NOTES",
+}: {
+  wordmark?: string;
+}) {
   return (
     <div className="insights-page__canvas" aria-hidden="true">
-      <span className="insights-page__wordmark">NOTES</span>
+      <span
+        className="insights-page__wordmark"
+        data-long={wordmark.length > 5 ? "true" : undefined}
+      >
+        {wordmark}
+      </span>
 
       <div className="insights-page__rule insights-page__rule--left">
         <span className="insights-page__tick insights-page__at-01">01</span>
