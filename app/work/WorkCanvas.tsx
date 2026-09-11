@@ -1,7 +1,11 @@
-export default function WorkCanvas() {
+export default function WorkCanvas({
+  wordmark = "WORK",
+}: {
+  wordmark?: string;
+}) {
   return (
     <div className="work-page__canvas" aria-hidden="true">
-      <span className="work-page__wordmark">WORK</span>
+      <span className="work-page__wordmark">{wordmark}</span>
 
       <div className="work-page__rule work-page__rule--left">
         <span className="work-page__tick work-page__at-01">01</span>

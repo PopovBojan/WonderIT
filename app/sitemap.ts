@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { CASE_STUDIES } from "@/lib/case-studies";
 import { getAllPosts, type BlogPost } from "@/lib/wp-graphql";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -11,10 +12,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Keep the static sitemap available if WordPress is temporarily offline.
   }
 
+  const caseStudies = CASE_STUDIES;
+
   const blogUrls: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.modified || post.date,
     changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  const caseStudyUrls: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+    url: `${baseUrl}/case-studies/${study.slug}`,
+    lastModified: study.modified || study.date,
+    changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
@@ -31,6 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/work`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/case-studies`,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -55,5 +70,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     ...blogUrls,
+    ...caseStudyUrls,
   ];
 }

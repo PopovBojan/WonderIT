@@ -151,7 +151,7 @@ export default function RootLayout({
                 <strong>What we do</strong>
                 <Link href="/services">Services</Link>
                 <Link href="/industries">Industries</Link>
-                <Link href="/work">Case studies</Link>
+                <Link href="/case-studies">Case studies</Link>
               </div>
               <div>
                 <strong>Legal</strong>
