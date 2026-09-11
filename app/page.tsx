@@ -4,10 +4,12 @@ import {
   testimonialLogosToCompanyLogos,
 } from "../lib/company-logos";
 import { TESTIMONIALS } from "../lib/site-content";
+import { CASE_STUDIES } from "../lib/case-studies";
 import { getTestimonialLogos } from "../lib/wp-graphql";
 import LogoMarqueeClient from "./components/LogoMarqueeClient";
 import TeamGrid from "./components/TeamGrid";
 import TestimonialsSection from "./components/TestimonialsSection";
+import HomeCaseStudies from "./components/HomeCaseStudies";
 
 export default async function Home() {
   let logos = COMPANY_LOGOS;
@@ -472,6 +474,8 @@ export default async function Home() {
           </article>
         </div>
       </section>
+
+      <HomeCaseStudies studies={CASE_STUDIES} />
 
       <section
         id="testimonials"

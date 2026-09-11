@@ -14,7 +14,12 @@ const NAV_LINKS = [
   {
     href: "/work",
     label: "Work",
-    description: "Projects and case studies",
+    description: "Shipped projects",
+  },
+  {
+    href: "/case-studies",
+    label: "Case studies",
+    description: "Stories from shipped products",
   },
   {
     href: "/industries",
@@ -123,7 +128,9 @@ export default function NavLinks() {
   }, []);
 
   const isActive = (href: string) =>
-    href.startsWith("/#") ? false : pathname === href;
+    href.startsWith("/#")
+      ? false
+      : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
