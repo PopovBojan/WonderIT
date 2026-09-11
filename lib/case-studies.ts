@@ -20,6 +20,7 @@ export type CaseStudy = {
   industry: string;
   product: string;
   lede?: string;
+  callout?: string;
   focus: string;
   stack: string;
   seoTitle: string;
@@ -40,6 +41,10 @@ export type CaseStudy = {
   storiesHeading?: string;
   storiesIntro?: string;
   whyItMatters: string;
+  relatedInsights?: Array<{
+    slug: string;
+    title: string;
+  }>;
   ctaHeading: string;
   ctaBody: string;
   liveUrl?: string;
@@ -146,6 +151,38 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     whyItMatters:
       "If you are building software that must talk to hardware, survive imperfect networks, serve more than one user type, and still feel simple — Next11 is a strong reference for how WonderIT works.\n\nWe specialize in the hard middle of product engineering: real-time systems, mobile craftsmanship, and domain UX that non-engineers can actually use.",
+    relatedInsights: [
+      {
+        slug: "next11-dual-audience-react-native-apps",
+        title:
+          "One codebase, two products: building coach and player apps for Next11",
+      },
+      {
+        slug: "next11-mqtt-edge-realtime-react-native",
+        title:
+          "Talking to the pitch: MQTT, Edge hardware, and realtime React Native",
+      },
+      {
+        slug: "next11-sports-science-ux-coaches",
+        title:
+          "Making sports science usable: load, intensity, and acute:chronic UX in Next11",
+      },
+      {
+        slug: "next11-live-session-reliability",
+        title:
+          "Match-day reliability: designing live session flows that survive the pitch",
+      },
+      {
+        slug: "next11-expo-eas-release-pipeline",
+        title:
+          "Shipping hardware-connected apps safely: Expo EAS environments for Next11",
+      },
+      {
+        slug: "next11-player-app-engagement",
+        title:
+          "Closing the loop: player progress, wellness, and engagement in Next11",
+      },
+    ],
     ctaHeading: "Need a hardware-connected mobile product?",
     ctaBody:
       "Contact WonderIT to discuss architecture, delivery, and UX for sports-tech, IoT, and real-time systems that have to work in the real world.",
@@ -344,6 +381,40 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     whyItMatters:
       "<p>This page is for two readers: field-service operators evaluating the live product, and companies who want a studio that can ship multi-tenant SaaS with queues, retrieval, billing, and approval workflows — a serious AI product, not a wrapper around a chatbot API.</p><p>If you are a field-service owner, the live product is at <a href=\"https://servicebrief.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">servicebrief.ai</a>. If you are hiring WonderIT to build something in this class — intake, knowledge, review gates, billing — that is the conversation this page is for.</p>",
+    relatedInsights: [
+      {
+        slug: "voice-note-to-structured-service-report",
+        title: "From voice note to structured service report",
+      },
+      {
+        slug: "rag-field-sops-without-leaking-to-customers",
+        title: "Company knowledge that cannot leak to the customer",
+      },
+      {
+        slug: "quote-drafts-from-a-price-book",
+        title: "Quote drafts that stay honest",
+      },
+      {
+        slug: "after-hours-phone-intake-without-auto-jobs",
+        title: "After-hours phone intake without auto-creating jobs",
+      },
+      {
+        slug: "email-inbox-that-classifies-service-mail",
+        title: "An operations inbox for field-service email",
+      },
+      {
+        slug: "embeddable-website-lead-form-for-field-service",
+        title: "A website lead form field teams can actually embed",
+      },
+      {
+        slug: "pwa-offline-job-capture-for-technicians",
+        title: "Capturing jobs when the signal drops",
+      },
+      {
+        slug: "multi-tenant-saas-isolation-roles-billing",
+        title: "Shipping a real multi-tenant SaaS",
+      },
+    ],
     ctaHeading: "Build a product like this.",
     ctaBody:
       "Contact WonderIT to discuss multi-tenant SaaS, AI workflows with human approval, and products that have to earn trust in the field.",
@@ -353,6 +424,116 @@ export const CASE_STUDIES: CaseStudy[] = [
     imageAlt: "ServiceBrief AI — field service operations product",
     featured: true,
     featuredRank: 2,
+  },
+  {
+    slug: "case-engine",
+    title:
+      "WordPress sites that help law firms show up in AI search, Google, and Maps",
+    client: "Case Engine",
+    industry: "Legal / SEO / WordPress",
+    product:
+      "WordPress sites for Case Engine’s law-firm clients, launched from one ACF template",
+    lede:
+      "Case Engine needed a repeatable way to launch law-firm websites without rebuilding each one. WonderIT built a WordPress system where the design stays consistent, existing Word documents map into structured ACF fields, and Case Engine plus the firm review the wording before anything is public.",
+    callout:
+      "That is not “AI writes the site.” It is AI turning an existing document into fields the template already knows how to render.",
+    focus:
+      "SEO-ready law-firm websites, fast site creation, structured ACF content",
+    stack:
+      "WordPress, ACF, JavaScript, PHP, n8n, OpenAI, SEOPress, CloudFront",
+    seoTitle: "Case Engine — search-ready WordPress sites for law firms | WonderIT",
+    seoDescription:
+      "WonderIT built Case Engine a reusable WordPress and ACF template, with n8n and OpenAI mapping Word documents into fields — so law-firm sites can launch faster, stay structured for search, and still go through legal review before they publish.",
+    overview:
+      "Case Engine wasn’t launching one website. It needed infrastructure that could support many law-firm clients without turning every new firm into a separate development project. WonderIT was hired to build the sites those firms actually publish: WordPress on each firm’s own domain, structured for search, and produced as a fill of one template rather than a custom rebuild.\n\nWe built a JavaScript template that owns layout, sections, styles, and states. PHP hooks that template to Advanced Custom Fields. The template does not invent the page — it reads ACF and drops the content into a preset design. Each firm gets different copy and images inside the same system. Images come from Case Engine’s design team, already formatted and sized; we place them in the site. CloudFront caches them so WordPress is not serving every request.\n\nContent usually arrives as Word documents — one document per page, because firm copy is large. n8n and OpenAI map that document onto the matching ACF fields.\n\nBecause these are law sites, wording is not optional. A Case Engine content creator reviews the mapped fields first. The law firm reviews next. Both have to approve before the site goes public.",
+    problem:
+      "A law-firm marketing site is easy to treat as a one-off WordPress job: new theme, paste the copy, ship. That falls apart when you are launching firm after firm and every site still has to be search-ready.\n\nUnstructured editor content is bad for search and bad for reuse. Practice areas, locations, attorney bios, and FAQs need to be fields, not blobs. If each firm is a fork of the last theme, the search structure drifts and launch speed dies.\n\nThe copy already exists, and it is huge. It arrives in Word, page by page. Hand-entering that into WordPress is where “fast” goes to die — and you still cannot publish until a content creator and the firm have signed off on the legal language. The work was to make a publishing system where content could change without changing the underlying product.",
+    goals: [
+      "Give Case Engine’s law-firm clients sites structured for search, not just to look like a law firm",
+      "Make each new firm a fill of the same template on that firm’s own domain, not a rebuild",
+      "Keep pages in ACF field groups so the design and the search structure stay stable when the copy changes",
+      "Map one Word document per page into those fields, then stop — a person still owns the wording",
+      "Keep WordPress lean so performance is not spent on a plugin pile",
+    ],
+    capabilitiesHeading: "What the product does for the firms.",
+    capabilities: [
+      {
+        heading: "Search-ready firm sites",
+        body: "WordPress sites on domains the law firms own, structured for search: the pages and fields a firm actually needs in public.",
+      },
+      {
+        heading: "One template, many firms",
+        body: "The template owns layout, sections, styles, and states. It reads ACF and renders a preset design. New firms change content and images, not the system.",
+      },
+      {
+        heading: "Word in, fields out",
+        body: "One Word document per page goes through n8n and OpenAI into the matching ACF group. The site is filled. It is not authored by the model.",
+      },
+      {
+        heading: "Review before it is law",
+        body: "Case Engine’s content creator reviews first. The law firm reviews second. Nothing publishes until both approve the wording.",
+      },
+    ],
+    approach: [
+      {
+        heading: "Build the site as a content model",
+        body: "Every kind of content lived in its own ACF field group. The template only renders what the fields contain, so design and search structure do not depend on how someone used the classic editor.",
+      },
+      {
+        heading: "Make launch a fill, not a fork",
+        body: "JavaScript template, PHP to WordPress, ACF as the contract. The next firm should get their domain and their copy, not another theme.",
+      },
+      {
+        heading: "Treat the Word doc as intake",
+        body: "One document per page, because the copy is too large to dump into a single file. n8n runs the workflow. OpenAI maps it onto fields. Mapping is the job. Writing the legal site is not.",
+      },
+      {
+        heading: "Two gates, then publish",
+        body: "Legal language has to survive a content creator and the firm. The pipeline is allowed to be fast. Publishing is not allowed to skip review.",
+      },
+      {
+        heading: "Keep WordPress lean",
+        body: "The core is ACF, SEOPress, a security plugin, and WordPress SMTP for custom template forms. Extra tools (CAPTCHA, a chatbot) only when a client asked. Fewer plugins means the page is not paying for software it does not use.",
+      },
+    ],
+    shipped: [
+      "WordPress sites for Case Engine’s law-firm clients, each on a domain the firm owns",
+      "A JavaScript template for layout, sections, styles, and states, reading from ACF into preset designs",
+      "Separate ACF field groups for the different kinds of firm content",
+      "n8n + OpenAI: one Word document per page mapped into ACF fields",
+      "Dual review before publish: Case Engine content creator, then the law firm",
+      "Images supplied and sized by Case Engine’s design team",
+    ],
+    engineering: [
+      "WordPress as the CMS and publishing surface",
+      "Advanced Custom Fields, with separate field groups per content type",
+      "JavaScript template + PHP to bind the template to those fields",
+      "n8n for the document-to-fields workflow",
+      "OpenAI to map Word-document copy onto ACF — not to author the site",
+      "SEOPress for SEO; custom forms in the template, mail via WordPress SMTP",
+      "CloudFront as a cache layer for design-team images",
+    ],
+    results:
+      "Case Engine now has a reusable WordPress foundation it can apply across law-firm clients without rebuilding each site’s underlying structure.\n\nWe cannot name firms, show client sites, or put launch-time or ranking numbers on this page. The proof is the system Case Engine still uses to take a firm from a Word document to a reviewed site on that firm’s own domain.",
+    outcomes: [
+      "A repeatable website product instead of one-off builds — the next firm gets the same system, not another theme",
+      "Structured content in predefined ACF fields, so the frontend and search architecture stay consistent",
+      "Automated intake: large Word documents enter through n8n and map into ACF, so launch is not hand-entering copy page by page",
+      "Human-controlled publication: Case Engine’s content creator and the law firm still approve the wording before it goes live",
+      "Sites on each firm’s own domain, not a Case Engine subdomain",
+    ],
+    whyItMatters:
+      "If you need WordPress that behaves like a product — same system, many sites, structured content, a real intake from documents — this is the pattern.\n\nIt is also the pattern if the content is regulated. Speed lives in the mapping. Authority lives in the review. The model is not in charge of what a law firm says in public.",
+    ctaHeading:
+      "Need a WordPress template that ships the next site without a rebuild?",
+    ctaBody:
+      "Talk to WonderIT about templates, ACF models, and document pipelines that leave a human in charge of what goes live.",
+    liveUrl: "https://caseengine.com/",
+    image:
+      "https://caseengine.com/wp-content/uploads/2025/04/caseengine-larger.png",
+    imageAlt: "Case Engine",
+    featured: true,
+    featuredRank: 3,
   },
 ];
 

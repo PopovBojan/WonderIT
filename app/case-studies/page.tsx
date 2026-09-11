@@ -12,11 +12,13 @@ import CaseStudiesGallery from "./CaseStudiesGallery";
 export const metadata: Metadata = {
   title: "Case Studies | WonderIT",
   description:
-    "WonderIT case studies on sports-tech, field service AI, mobile, SaaS, real-time systems, and software that operators actually use.",
+    "WonderIT case studies on sports-tech, field service AI, legal WordPress, mobile, SaaS, real-time systems, and software that operators actually use.",
   keywords: [
     "software case studies",
     "React Native case study",
     "sports technology software",
+    "WordPress case study",
+    "legal SEO websites",
     "SaaS case studies",
     "real-time mobile apps",
     "WonderIT portfolio",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Case Studies | WonderIT",
     description:
-      "Stories from products we shipped for coaches, clubs, and field teams — including Next11 live sports tracking and ServiceBrief AI.",
+      "Stories from products we shipped for coaches, clubs, field teams, and law firms — including Next11, ServiceBrief AI, and Case Engine.",
     url: "https://wonderit.io/case-studies",
     siteName: "WonderIT",
     images: [
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesPage() {
   const studies = getCaseStudies();
-  const featured = featuredCaseStudies(studies, 2);
+  const featured = featuredCaseStudies(studies, 3);
   const featuredSlugs = new Set(featured.map((study) => study.slug));
   const gallery = studies.filter((study) => !featuredSlugs.has(study.slug));
 

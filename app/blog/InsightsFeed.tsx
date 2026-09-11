@@ -9,12 +9,18 @@ import {
   uniqueTopics,
 } from "./insights-utils";
 
+function noteNumber(index: number) {
+  return String(index).padStart(2, "0");
+}
+
 function FeaturedNote({
   post,
   kicker,
+  index,
 }: {
   post: InsightCardData;
   kicker: string;
+  index: number;
 }) {
   return (
     <Link
@@ -31,11 +37,6 @@ function FeaturedNote({
         <h2 id={`featured-${post.slug}`}>{post.title}</h2>
         {post.excerpt ? <p className="insights-featured__copy">{post.excerpt}</p> : null}
         <div className="insights-featured__foot">
-          <p className="insights-featured__meta">
-            {post.author}
-            <span aria-hidden="true"> · </span>
-            <time dateTime={post.date}>{post.dateLabel}</time>
-          </p>
           <span className="button primary">
             Read the note
             <span aria-hidden="true">→</span>
@@ -43,6 +44,9 @@ function FeaturedNote({
         </div>
       </div>
       <div className="insights-featured__media">
+        <span className="insights-card__index" aria-hidden="true">
+          {noteNumber(index)}
+        </span>
         {post.image ? (
           <Image
             src={post.image}
@@ -54,7 +58,7 @@ function FeaturedNote({
           />
         ) : (
           <div className="insights-featured__placeholder">
-            <span>WonderIT</span>
+            <span>{post.title}</span>
           </div>
         )}
       </div>
@@ -63,13 +67,11 @@ function FeaturedNote({
 }
 
 function NoteCard({ post, index }: { post: InsightCardData; index: number }) {
-  const number = String(index + 1).padStart(2, "0");
-
   return (
     <Link href={`/blog/${post.slug}`} className="insights-card">
       <div className="insights-card__media">
         <span className="insights-card__index" aria-hidden="true">
-          {number}
+          {noteNumber(index)}
         </span>
         {post.image ? (
           <Image
@@ -81,7 +83,7 @@ function NoteCard({ post, index }: { post: InsightCardData; index: number }) {
           />
         ) : (
           <div className="insights-card__placeholder">
-            <span>WonderIT</span>
+            <span>{post.title}</span>
           </div>
         )}
       </div>
@@ -90,8 +92,8 @@ function NoteCard({ post, index }: { post: InsightCardData; index: number }) {
         <h3>{post.title}</h3>
         {post.excerpt ? <p>{post.excerpt}</p> : null}
         <span className="insights-card__cta">
-          <time dateTime={post.date}>{post.dateLabel}</time>
-          <i aria-hidden="true">Read →</i>
+          Read
+          <i aria-hidden="true">→</i>
         </span>
       </div>
     </Link>
@@ -175,13 +177,14 @@ export default function InsightsFeed({ posts }: { posts: InsightCardData[] }) {
         <FeaturedNote
           post={featured}
           kicker={filter === "all" ? "Latest" : "Note"}
+          index={1}
         />
       ) : null}
 
       {rest.length ? (
         <div className="insights-grid">
           {rest.map((post, index) => (
-            <NoteCard key={post.id} post={post} index={index} />
+            <NoteCard key={post.id} post={post} index={index + 2} />
           ))}
         </div>
       ) : null}
