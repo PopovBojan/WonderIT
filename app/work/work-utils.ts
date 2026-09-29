@@ -67,6 +67,9 @@ export function usesCoverImage(project: Project) {
 export function projectImageUrl(url?: string, width = 960) {
   const normalized = normalizeLogoUrl(url);
   if (!normalized) return undefined;
+  if (normalized.includes("fb-cover.png")) {
+    return "/covers/fb-cover.png";
+  }
   return normalized.replace(/=w\d+$/, `=w${width}`);
 }
 

@@ -4,6 +4,12 @@ import PageCta from "../../components/PageCta";
 import { getCaseStudy, getCaseStudies } from "@/lib/case-studies";
 import CaseStudyTemplate from "../CaseStudyTemplate";
 
+function absoluteImage(image?: string) {
+  if (!image) return "https://wonderit.io/opengraph-image";
+  if (image.startsWith("/")) return `https://wonderit.io${image}`;
+  return image;
+}
+
 function plainText(value?: string) {
   return (value || "")
     .replace(/<[^>]*>/g, " ")
@@ -34,7 +40,7 @@ export async function generateMetadata({
 
   const url = `https://wonderit.io/case-studies/${study.slug}`;
   const description = study.seoDescription || plainText(study.overview);
-  const image = study.image || "https://wonderit.io/opengraph-image";
+  const image = absoluteImage(study.image);
 
   return {
     title: study.seoTitle,
@@ -74,7 +80,7 @@ export default async function CaseStudyPage({
         "@id": `${url}#article`,
         headline: study.title,
         description: study.seoDescription,
-        image: study.image,
+        image: absoluteImage(study.image),
         author: { "@type": "Organization", name: "WonderIT" },
         publisher: { "@id": "https://wonderit.io/#organization" },
         mainEntityOfPage: { "@type": "WebPage", "@id": url },

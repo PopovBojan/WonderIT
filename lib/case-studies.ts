@@ -419,8 +419,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ctaBody:
       "Contact WonderIT to discuss multi-tenant SaaS, AI workflows with human approval, and products that have to earn trust in the field.",
     liveUrl: "https://servicebrief.ai/",
-    image:
-      "https://wonderit-wp-wordpress.server.wonderit.io/wp-content/uploads/2026/07/fb-cover.png",
+    image: "/covers/fb-cover.png",
     imageAlt: "ServiceBrief AI — field service operations product",
     featured: true,
     featuredRank: 2,
